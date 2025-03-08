@@ -94,7 +94,7 @@ def get_composite_stats():
                 session_data[row][1] = __temp[1]
                 session_data[row][2] = __temp[2]
             except:
-                print(__temp)
+                print("error",__temp)
 
         __temp = [np.datetime64(),0.0,
         np.timedelta64(),0,np.timedelta64(),
@@ -107,6 +107,7 @@ def get_composite_stats():
         break_statistics = get_break_stats(session_data[:-2])
         __temp[2:11] = break_statistics
         study_stats[fileindex] = tuple(__temp)
+    study_stats.sort(order="start time")
     return study_stats
 
 
@@ -115,14 +116,13 @@ def get_composite_stats():
 def render_stats(composite_stats):
     #rating over time graph
     rating_time, rating_time_ax = plt.subplots()
-    data = np.array([[composite_stats[i][0:1]] for i in range(len(composite_stats))])
-    rating_time_ax.plot(data)
-   # rating_time_ax.set(ylim=(0,5))
-    #plt.show()
+    data = np.array([[composite_stats[i][0],composite_stats[i][1]] for i in range(len(composite_stats))])
+    rating_time_ax.plot(data[:,0],data[:,1])
+    rating_time_ax.set(ylim=(0,5))
+    plt.show()
     return None
 
 if __name__ == "__main__":
 
     data = get_composite_stats()
-    print(data)
     render_stats(data)
