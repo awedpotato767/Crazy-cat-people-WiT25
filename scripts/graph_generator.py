@@ -115,9 +115,10 @@ def get_composite_stats():
 def render_stats(composite_stats):
     #rating over time graph
     rating_time, rating_time_ax = plt.subplots()
-    rating_time_ax.plot( composite_stats[:][0], composite_stats[:][1])
-    rating_time_ax.set(ylim=(0,5))
-    plt.show()
+    data = np.array([[composite_stats[i][0:1]] for i in range(len(composite_stats))])
+    rating_time_ax.plot(data)
+   # rating_time_ax.set(ylim=(0,5))
+    #plt.show()
     return None
 
 if __name__ == "__main__":
