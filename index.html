@@ -12,7 +12,21 @@
        
      <p id="clock">1</p>
      <p id="text">This is sample text</p>
-     <p id="stars">SO IS THIS AHHHHH HHHHHHH</p>
+     <div class = stars>
+        <button id = star1 onclick="starChange(1)">☆</button>
+        <button id = star2 onclick="starChange(2)">☆</button>
+        <button id = star3 onclick="starChange(3)">☆</button>
+        <button id = star4 onclick="starChange(4)">☆</button>
+        <button id = star5 onclick="starChange(5)">☆</button>
+     </div>
+
+      <style>
+        #star1,#star2,#star3,#star4,#star5 {
+          display: none;
+        }
+      </style>
+      
+     
     
         <!--The text elements for the main box-->
 
@@ -20,7 +34,7 @@
             <button id="start" onclick="startStudy();menuChange1()">Start</button>
             <button id="shortBreak">Take a short break</button>
             <button id="longBreak">Take a long break</button>
-            <button id="stop">Stop</button>
+            <button id="stop" onclick="stopChange()">Stop</button>
 
             <div id="studyLength">
                 <p>Planned Study Period (minutes)</p>

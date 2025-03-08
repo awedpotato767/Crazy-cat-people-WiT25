@@ -16,6 +16,14 @@ slider2.oninput = function() {
   output2.innerHTML = this.value;
 }
 
+function starChange(starVal) {
+  for (j = 1; j < 6; j++) {
+    if (j <= starVal) {
+      document.getElementById("star" + j).innerHTML = "★";
+    } else {document.getElementById("star" + j).innerHTML = "☆";}
+  }
+}
+
 function menuChange1() {
   document.getElementById("start").style.display = "none";
   document.getElementById("studyLength").style.display = "none";
@@ -44,6 +52,18 @@ function updateClock() {
   
     document.getElementById("clock").innerHTML = hours + ":" + minutes + ":" + seconds;
   }
+
+function stopChange() {
+  document.getElementById("star1").style.display = "inline-block";
+  document.getElementById("star2").style.display = "inline-block";
+  document.getElementById("star3").style.display = "inline-block";
+  document.getElementById("star4").style.display = "inline-block";
+  document.getElementById("star5").style.display = "inline-block";
+  document.getElementById("stop").style.display = "none";
+  document.getElementById("shortBreak").style.display = "none";
+  document.getElementById("longBreak").style.display = "none";
+  document.getElementById("text").style.display = "none";
+}
   
   setInterval(updateClock, 1000);
 

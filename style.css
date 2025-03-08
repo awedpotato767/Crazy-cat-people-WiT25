@@ -29,14 +29,19 @@ body {
     width: 900px;
 }
 
-#stars {
-    font: 75px Arial;
+.stars {
     position: fixed;
     color: black;
-    left: 120px;
-    top: 250px;
-    width: 400px;
-    opacity: 0;
+    left: 400px;
+    top: 300px;
+    width: 700px;
+    
+}
+
+.stars button {
+    font: 50px Arial;
+    background-color: #ffb240;
+    border: none;
 }
 
 #studyLength {
@@ -122,8 +127,6 @@ button:hover {
     cursor: pointer;
     text-decoration-line: underline;
 }
-
-
 
 #b4 {
     position: fixed;
