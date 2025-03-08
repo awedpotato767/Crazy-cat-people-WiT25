@@ -14,7 +14,7 @@ const study = Vue.createApp({
                 alert("Time to take a break!");
                 isBreak = true;
                 breakStart = Date.now();
-                startBreak();
+                this.startBreak();
             }, breakDistance * 60 * 1000);
         },
         endBreak: function() {
@@ -23,6 +23,10 @@ const study = Vue.createApp({
         },
         endStudySession: function() {
             axios.post()
+        },
+        startBreak: function() {
+            this.isBreak = true;
+            this.breakStart = Date.now();
         },
         mounted() {
             breakDistance = parseInt(document.getElementById("breakDistanceSlider").value);
