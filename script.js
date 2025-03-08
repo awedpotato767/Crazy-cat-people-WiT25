@@ -1,4 +1,4 @@
-  
+/*
 var slider1 = document.getElementById("breakDistanceSlider");
 var output1 = document.getElementById("bdval");
 output1.innerHTML = slider1.value;
@@ -24,6 +24,7 @@ function starChange(starVal) {
   }
 }
 
+*/
 function menuChange1() {
   document.getElementById("start").style.display = "none";
   document.getElementById("studyLength").style.display = "none";
