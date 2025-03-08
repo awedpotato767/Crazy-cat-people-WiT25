@@ -8,7 +8,6 @@
     top: 30px;
 }
 
-
 body {
     background-color: #ffef91;
 }
@@ -47,8 +46,9 @@ body {
     display: block;
 }
 
-#studyLengthSlider {
+#studyLengthSlider, #breakDistanceSlider {
     accent-color: #ff6600;
+    width:250px
 }
 
 #breakDistance {
@@ -58,14 +58,14 @@ body {
     display: block;
 }
 
-#breakDistanceSlider {
-    accent-color: #ff6600;
+#breakDistance p, #studyLength p {
+    font: 20px Arial;
 }
 
 #start {
     position: fixed;
     border: none;
-    height: 75px;
+    height: 100px;
     width: 250px;
     top: 500px;
     left: 400px;

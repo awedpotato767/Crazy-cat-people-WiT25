@@ -25,6 +25,13 @@ function menuChange1() {
   document.getElementById("longBreak").style.display = "block";
 }
 
+function clockChange() {
+  if (document.getElementById("clock").style.display == "none") {
+    document.getElementById("clock").style.display = "block";
+  } else {
+    document.getElementById("clock").style.display = "none";
+  } }
+
 function updateClock() {
     const now = new Date();
     let hours = now.getHours();
