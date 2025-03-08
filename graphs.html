@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Graphs summary</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://unpkg.com/vue@3.0.2"></script>
+    </head>
+    <body>
+        <div id="graphs-container">
+            <div id="graph"></div>
+        </div>
+        <script src="script.js">
+            const graphs = Vue.createApp({
+                data() {
+                    return {
+                        
+                    }
+                },
+                methods: {
+                    getGraphData: function() {
+                        axios.post('/getgraphdata', {}).then(response => {
+                            data = response.data
+                            document.getElementById('graph').innerHTML = data
+                        })
+                    }
+                }
+            })
+
+            graphs.mount('#graphs-container')
+        </script>
+    </body>
+</html>
