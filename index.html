@@ -19,21 +19,21 @@
     <!--The text elements for the main box-->
 
      <div id="mainButtons">
-            <button id="start" v-on:click="startStudy()" onclick="menuChange1()">Start</button>
-            <button id="shortBreak">Take a short break</button>
-            <button id="longBreak">Take a long break</button>
-            <button id="stop" v-on:click="endStudySession()">Stop</button>
+            <button id="start" onclick="menuChange1()" v-on:click="startStudy">Start</button>
+            <button id="shortBreak" v-on:click="startBreak">Take a short break</button>
+            <button id="longBreak" v-on:click="startBreak">Take a long break</button>
+            <button id="stop" v-on:click="endStudySession">Stop</button>
 
             <div id="studyLength">
                 <p>Planned Study Period (minutes)</p>
-                <input type="range" min="15" max="300" value="60" id="studyLengthSlider">
-                <p id = "slval"></p>
+                <input type="range" min="15" max="300" id="studyLengthSlider" v-model="studyLength">
+                <label for="studyLengthSlider">{{studyLength}}</label>
             </div>
 
             <div id="breakDistance">
                 <p>Time between breaks (minutes)</p>
-                <input type="range" min="15" max="60" value="30" id="breakDistanceSlider">
-                <p id = "bdval"></p>
+                <input type="range" min="15" max="60" id="breakDistanceSlider" v-model="breakDistance">
+                <label for="breakDistanceSlider">{{breakDistance}}</label>
             </div>
                 
             

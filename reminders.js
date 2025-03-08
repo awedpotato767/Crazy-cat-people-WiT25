@@ -1,36 +1,35 @@
 const study = Vue.createApp({
     data() {
         return {
-            breakDistance: null,
-            studyLength: null,
+            breakDistance: 30,
+            studyLength: 60,
             breakStart: null,
             isBreak: false,
             overtimeActivated: false
         }
     },
     methods: {
-        startStudy: function() {
-            setTimeout(function() {
-                alert("Time to take a break!");
-                isBreak = true;
-                breakStart = Date.now();
-                this.startBreak();
-            }, breakDistance * 60 * 1000);
-        },
         endBreak: function() {
             this.isBreak = false;
             this.breakStart = null;
         },
         endStudySession: function() {
-            axios.post()
+            
         },
-        startBreak: function() {
+        startBreak() {
             this.isBreak = true;
             this.breakStart = Date.now();
         },
+        startStudy: function() {
+            var self = this;
+            setTimeout(function() {
+                alert("Time to take a break!");
+                self.isBreak = true;
+                self.breakStart = Date.now();
+                self.startBreak();
+            }, this.breakDistance * 60 * 1000);
+        },
         mounted() {
-            breakDistance = parseInt(document.getElementById("breakDistanceSlider").value);
-            studyLength = parseInt(document.getElementById("studyLengthSlider").value);
             document.addEventListener('mousemove', function() {
                 if (isBreak) {
                     var overtime = parseInt(Date.now() - breakStart);
@@ -48,5 +47,7 @@ const study = Vue.createApp({
     }
 });
 
-study.mount('#backBox');
+study.mount('#mainButtons');
+
+
 
