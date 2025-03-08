@@ -2,11 +2,10 @@
     position: fixed;
     padding: 0px;
     background-color: #ffb240;
-    width: 850px;
+    width: 1000px;
     height: 665px;
     left: 30px;
     top: 30px;
-
 }
 
 
@@ -18,7 +17,7 @@ body {
     font: 150px Arial;
     position: fixed;
     color: black;
-    left: 140px;
+    left: 200px;
     top: 0px;
 }
 
@@ -26,9 +25,9 @@ body {
     font: 50px Arial;
     position: fixed;
     color: black;
-    left: 120px;
+    left: 100px;
     top: 250px;
-    width: 650px;
+    width: 900px;
 }
 
 #stars {
@@ -54,7 +53,7 @@ body {
 #breakDistance {
     position: fixed;
     top: 500px;
-    left: 600px;
+    left: 700px;
 }
 
 #breakDistanceSlider {
@@ -67,7 +66,7 @@ body {
     height: 75px;
     width: 250px;
     top: 500px;
-    left: 300px;
+    left: 400px;
     font: 36px Arial;
     color: black;
     background-color: #ffef91;
@@ -91,7 +90,7 @@ button:hover {
     transition-duration: 0.1s;
     background-color: #ffb240;
     top: 100px;
-    left: 950px;
+    left: 1100px;
 }
 
 #b5 {
@@ -104,7 +103,7 @@ button:hover {
     transition-duration: 0.1s;
     background-color: #ffb240;
     top: 300px;
-    left: 950px;
+    left: 1100px;
 }
 
 #b6 {
@@ -117,7 +116,7 @@ button:hover {
     transition-duration: 0.1s;
     background-color: #ffb240;
     top: 500px;
-    left: 950px;
+    left: 1100px;
 }
 
 #b2, #b3 {
