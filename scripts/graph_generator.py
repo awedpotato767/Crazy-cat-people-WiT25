@@ -114,12 +114,13 @@ def get_composite_stats():
 
 
 def render_stats(composite_stats):
+    figure, ax= plt.subplots()
     #rating over time graph
-    rating_time, rating_time_ax = plt.subplots()
     data = np.array([[composite_stats[i][0],composite_stats[i][1]] for i in range(len(composite_stats))])
-    rating_time_ax.plot(data[:,0],data[:,1])
-    rating_time_ax.set(ylim=(0,5))
-    plt.show()
+    ax.plot(data[:,0],data[:,1])
+    ax.set(ylim=(0,5))
+    figure.set_size_inches(12,6)
+    plt.savefig(f"../graphs/rating_time.png")
     return None
 
 if __name__ == "__main__":
