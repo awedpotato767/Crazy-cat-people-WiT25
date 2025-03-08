@@ -24,10 +24,13 @@
                             document.getElementById('graph').innerHTML = data
                         })
                     }
+                },
+                mounted() {
+                   this.getGraphData();
                 }
-            })
+            });
 
-            graphs.mount('#graphs-container')
+            graphs.mount('#graphs-container');
         </script>
     </body>
 </html>
