@@ -5,6 +5,7 @@ const study = Vue.createApp({
             studyLength: 60,
             breakStart: null,
             isBreak: false,
+            breakType: null,
             overtimeActivated: false
         }
     },
@@ -14,13 +15,23 @@ const study = Vue.createApp({
             this.breakStart = null;
         },
         endStudySession: function() {
-            
+            axios.post('/addlog', JSON.stringify('session ended'));
         },
-        startBreak() {
+        startShortBreak: function() {
+            axios.post('/addlog', JSON.stringify('short break started'));
             this.isBreak = true;
+            this.breakType = 'short';
+            this.breakStart = Date.now();
+        },
+        startLongBreak: function() {
+            axios.post('/addlog', JSON.stringify('long break started'));
+            this.isBreak = true;
+            this.breakType = 'long';
             this.breakStart = Date.now();
         },
         startStudy: function() {
+            console.log("let the study commence");
+            axios.post('/addlog', JSON.stringify('session started'));
             var self = this;
             setTimeout(function() {
                 alert("Time to take a break!");
