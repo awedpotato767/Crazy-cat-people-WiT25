@@ -6,16 +6,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return render_template()
+    return render_template('index.html')
 
 @app.route('/getgraphdata')
 def getgraphs():
-    dir = request.get_data()
-    dir = json.loads(dir)
-
     #generate graphs
 
     #return json.dumps(graph stuff)
+
+    return 'success'
 
 if __name__ == '__main__':
     app.run(debug = True)
