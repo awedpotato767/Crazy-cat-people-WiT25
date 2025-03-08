@@ -14,5 +14,9 @@ This project aims to provide a study tool to encourage people to work in a way t
 
 ## installation
 
+dependencies:
+
+ - python:
+  - plotnine
 
 ...
