@@ -16,8 +16,14 @@ slider2.oninput = function() {
   output2.innerHTML = this.value;
 }
 
-
-
+function menuChange1() {
+  document.getElementById("start").style.display = "none";
+  document.getElementById("studyLength").style.display = "none";
+  document.getElementById("breakDistance").style.display = "none";
+  document.getElementById("stop").style.display = "block";
+  document.getElementById("shortBreak").style.display = "block";
+  document.getElementById("longBreak").style.display = "block";
+}
 
 function updateClock() {
     const now = new Date();

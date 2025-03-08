@@ -44,6 +44,7 @@ body {
     position: fixed;
     top: 500px;
     left: 100px;
+    display: block;
 }
 
 #studyLengthSlider {
@@ -54,6 +55,7 @@ body {
     position: fixed;
     top: 500px;
     left: 700px;
+    display: block;
 }
 
 #breakDistanceSlider {
@@ -71,6 +73,49 @@ body {
     color: black;
     background-color: #ffef91;
     transition-duration: 0.1s;
+    display: block;
+}
+
+#stop {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    top: 500px;
+    left: 400px;
+    font: 36px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: none;
+}
+
+#shortBreak {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    top: 500px;
+    left: 100px;
+    font: 36px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: none;
+}
+
+#longBreak {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    top: 500px;
+    left: 700px;
+    font: 36px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: none;
 }
 
 button:hover {
@@ -117,8 +162,4 @@ button:hover {
     background-color: #ffb240;
     top: 500px;
     left: 1100px;
-}
-
-#b2, #b3 {
-    opacity: 0;
 }
