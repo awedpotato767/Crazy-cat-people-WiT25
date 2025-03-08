@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, session, jsonify
 import json
+from scripts import graph_generator
 
 app = Flask(__name__)
 
