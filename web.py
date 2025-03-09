@@ -37,7 +37,7 @@ def addlog():
         session -= 1
     app.logger.info(session, log)
 
-    with open(f'session logs/{creation_day} session {session}', "w+") as logfile:
+    with open(f'session logs/{creation_day} session {session}', "a+") as logfile:
         logfile.write(f'[{np.datetime64("now")}] {log}\n')
 
     return 'success'
