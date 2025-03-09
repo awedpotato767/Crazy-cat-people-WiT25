@@ -174,3 +174,15 @@ button:hover {
     top: 500px;
     left: 1100px;
 }
+
+#graphs-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.graph {
+    width:30%;
+    float:left;
+}

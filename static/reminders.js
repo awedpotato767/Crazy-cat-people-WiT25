@@ -62,14 +62,14 @@ const study = Vue.createApp({
             studyLength = parseInt(document.getElementById("studyLengthSlider").value);
 
             document.addEventListener('mousemove', function() {
-                if (isBreak) {
+                if (this.isBreak) {
                     var overtime = parseInt(Date.now() - breakStart);
                     //if the user hasn't properly ended the break and they are still doing stuff
-                    if (overtime >= 10000 && isBreak) {
-                        overtimeActivated = true;
+                    if (overtime >= 10000 && this.isBreak) {
+                        this.overtimeActivated = true;
                         alert("Perhaps you need another reminder?");
                     }
-                    if (overtime >= 20000 && isBreak && overtimeActivated) {
+                    if (overtime >= 20000 && this.isBreak && this.overtimeActivated) {
                         alert("Please take care of yourself.");
                     }
                 }
