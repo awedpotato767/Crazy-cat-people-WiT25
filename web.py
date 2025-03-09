@@ -1,9 +1,9 @@
-from flask import Flask, request, render_template, session, jsonify
+from flask import Flask, request, render_template, session, jsonify, send_from_directory
 import json
 from scripts import graph_generator
 import os
 import numpy as np
-import pathlib
+from PIL import Image
 
 html_path = os.getcwd() + '/templates'
 
@@ -14,12 +14,9 @@ app.secret_key = 'kldklsdjsssdgfgh'
 def front_page():
     return render_template("index.html")
 
-@app.route('/getgraphdata')
+@app.route('/generategraphs', methods=['POST', 'GET'])
 def getgraphs():
-    #generate graphs
-
-    #return json.dumps(graph stuff)
-
+    #put the graph_generator.py stuff here please
     return 'success'
 
 @app.route('/addlog', methods=['POST', 'GET'])

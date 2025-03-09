@@ -38,6 +38,35 @@ function updateClock() {
     document.getElementById("clock").innerHTML = hours + ":" + minutes + ":" + seconds;
   }
   
-  setInterval(updateClock, 1000);
+setInterval(updateClock, 1000);
 
+function viewGraphs() {
+  document.getElementById('graphs-container').style.display = 'block';
+  document.getElementById('mainButtons').style.display = 'none';
+  document.getElementById('display').style.display = 'none';
+}
+
+function viewButtons() {
+  document.getElementById('graphs-container').style.display = 'none';
+  document.getElementById('mainButtons').style.display = 'block';
+  document.getElementById('display').style.display = 'block';
+}
+
+const graphs = Vue.createApp({
+  data() {
+      return {
+          
+      }
+  },
+  methods: {
+      getGraphData: function() {
+          axios.post('/generategraphs');
+      }
+  },
+  mounted() {
+     this.getGraphData();
+  }
+});
+
+graphs.mount('#graphs-container');
 

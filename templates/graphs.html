@@ -8,30 +8,9 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
     <body>
-        <div id="graphs-container">
-            <div id="graph"></div>
-        </div>
+        
         <script src="script.js">
-            const graphs = Vue.createApp({
-                data() {
-                    return {
-                        
-                    }
-                },
-                methods: {
-                    getGraphData: function() {
-                        axios.post('/getgraphdata').then(response => {
-                            data = response.data;
-                            document.getElementById('graph').innerHTML = data;
-                        })
-                    }
-                },
-                mounted() {
-                   this.getGraphData();
-                }
-            });
-
-            graphs.mount('#graphs-container');
+            
         </script>
     </body>
 </html>
