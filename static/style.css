@@ -27,7 +27,7 @@ body {
     color: black;
     left: 200px;
     top: 300px;
-    width: 900px;
+    width: 600px;
     display: block;
 }
 
@@ -35,7 +35,7 @@ body {
     position: fixed;
     color: black;
     left: 400px;
-    top: 300px;
+    top: 500px;
     width: 700px;
     
 }

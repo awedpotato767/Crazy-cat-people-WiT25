@@ -18,6 +18,8 @@ slider2.oninput = function() {
 }
  */
 
+var thisTime;
+
 function starChange(starVal) {
   for (j = 1; j < 6; j++) {
     if (j <= starVal) {
@@ -33,6 +35,11 @@ function menuChange1() {
   document.getElementById("stop").style.display = "block";
   document.getElementById("shortBreak").style.display = "block";
   document.getElementById("longBreak").style.display = "block";
+
+  thisTime = parseInt(document.getElementById("breakDistanceSlider").value);
+  document.getElementById("text").innerHTML="You should take a break in " + thisTime + " minutes :)";
+  timer = setInterval(breakTimer(),60000)
+
 }
 
 function clockChange() {
@@ -64,9 +71,14 @@ function stopChange() {
   document.getElementById("stop").style.display = "none";
   document.getElementById("shortBreak").style.display = "none";
   document.getElementById("longBreak").style.display = "none";
-  document.getElementById("text").style.display = "none";
+  document.getElementById("text").innerHTML = "please rate your study session :)";
+
+  clearInterval(timer)
 }
   
-  setInterval(updateClock, 1000);
+setInterval(updateClock, 1000);
 
-
+function breakTimer() {
+    document.getElementById("text").innerHTML="You should take a break in " + thisTimer+ " minutes :)";
+    thisTime --;
+}

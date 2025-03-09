@@ -1,5 +1,6 @@
 var tiempo = 0;
-
+var breakDistance;
+var studyLength;
 
 
 const study = Vue.createApp({
@@ -38,14 +39,7 @@ const study = Vue.createApp({
                 document.getElementById("text").innerHTML="You should take a break in " + tiempo + "minutes :)";
                 tiempo --;
             }
-
-
-
         }
-
-
-
-
         ,
         startStudy: function() {
             console.log("let the study commence");
@@ -58,6 +52,7 @@ const study = Vue.createApp({
                 self.startBreak();
             }, this.breakDistance * 60 * 1000);
             tiempo = breakDistance;
+            document.getElementById("text").innerHTML="You should take a break in " + tiempo + "minutes :)";
             thisInterval = setInterval(breakTimer, 60000);
 
         },
@@ -65,7 +60,7 @@ const study = Vue.createApp({
 
             breakDistance = parseInt(document.getElementById("breakDistanceSlider").value);
             studyLength = parseInt(document.getElementById("studyLengthSlider").value);
-            
+
             document.addEventListener('mousemove', function() {
                 if (isBreak) {
                     var overtime = parseInt(Date.now() - breakStart);
