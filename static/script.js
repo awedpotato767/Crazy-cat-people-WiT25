@@ -93,7 +93,7 @@ setInterval(updateClock, 100);
 
 function breakTimer() {
   document.getElementById("text").innerHTML =
-    "You should take a break in " + thisTimer + " minutes :)";
+    "You should take a break in " + thisTime + " minutes :)";
   thisTime--;
 }
 

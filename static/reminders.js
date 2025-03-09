@@ -36,7 +36,7 @@ const study = Vue.createApp({
     },
     breakTimer: function (tiempo) {
       document.getElementById("text").innerHTML =
-        "You should take a break in " + tiempo + "minutes :)";
+        "You should take a break in " + tiempo + " minutes :)";
       tiempo--;
     },
     startStudy: function () {
@@ -52,9 +52,9 @@ const study = Vue.createApp({
         },
         this.breakDistance * 60 * 1000,
       );
-      tiempo = breakDistance;
+      tiempo = parseInt(document.getElementById("breakDistanceSlider").value);
       document.getElementById("text").innerHTML =
-        "You should take a break in " + tiempo + "minutes :)";
+        "You should take a break in " + tiempo + " minutes :)";
       thisInterval = setInterval(breakTimer, 60000);
     },
   },
