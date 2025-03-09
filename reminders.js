@@ -1,3 +1,7 @@
+var tiempo = 0;
+
+
+
 const study = Vue.createApp({
     data() {
         return {
@@ -12,6 +16,7 @@ const study = Vue.createApp({
         endBreak: function() {
             this.isBreak = false;
             this.breakStart = null;
+            clearInterval(thisInterval)
         },
         endStudySession: function() {
             
@@ -20,6 +25,19 @@ const study = Vue.createApp({
             this.isBreak = true;
             this.breakStart = Date.now();
         },
+        breakTimer: function(tiempo) {
+                document.getElementById("text").innerHTML="You should take a break in " + tiempo + "minutes :)";
+                tiempo --;
+            }
+
+
+
+        }
+
+
+
+
+        ,
         startStudy: function() {
             var self = this;
             setTimeout(function() {
@@ -28,6 +46,9 @@ const study = Vue.createApp({
                 self.breakStart = Date.now();
                 self.startBreak();
             }, this.breakDistance * 60 * 1000);
+            tiempo = breakDistance;
+            thisInterval = setInterval(breakTimer, 60000);
+
         },
         mounted() {
             document.addEventListener('mousemove', function() {
@@ -44,8 +65,7 @@ const study = Vue.createApp({
                 }
             });
         }
-    }
-});
+    } );
 
 study.mount('#mainButtons');
 

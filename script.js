@@ -15,6 +15,7 @@ slider1.oninput = function() {
 slider2.oninput = function() {
   output2.innerHTML = this.value;
 }
+ */
 
 function starChange(starVal) {
   for (j = 1; j < 6; j++) {
@@ -24,7 +25,6 @@ function starChange(starVal) {
   }
 }
 
-*/
 function menuChange1() {
   document.getElementById("start").style.display = "none";
   document.getElementById("studyLength").style.display = "none";

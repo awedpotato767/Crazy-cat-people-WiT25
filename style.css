@@ -24,8 +24,8 @@ body {
     font: 50px Arial;
     position: fixed;
     color: black;
-    left: 100px;
-    top: 250px;
+    left: 200px;
+    top: 300px;
     width: 900px;
 }
 
@@ -37,6 +37,11 @@ body {
     width: 700px;
     
 }
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 
 .stars button {
     font: 50px Arial;
