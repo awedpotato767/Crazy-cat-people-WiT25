@@ -14,7 +14,13 @@
        
      <p id="clock">1</p>
      <p id="text">This is sample text</p>
-     <p id="stars">SO IS THIS AHHHHH HHHHHHH</p>
+     <div class = stars>
+        <button id = star1 onclick="starChange(1)">☆</button>
+        <button id = star2 onclick="starChange(2)">☆</button>
+        <button id = star3 onclick="starChange(3)">☆</button>
+        <button id = star4 onclick="starChange(4)">☆</button>
+        <button id = star5 onclick="starChange(5)">☆</button>
+     </div>
     
     <!--The text elements for the main box-->
 
@@ -22,7 +28,7 @@
             <button id="start" onclick="menuChange1()" v-on:click="startStudy">Start</button>
             <button id="shortBreak" v-on:click="startShortBreak">Take a short break</button>
             <button id="longBreak" v-on:click="startLongBreak">Take a long break</button>
-            <button id="stop" v-on:click="endStudySession">Stop</button>
+            <button id="stop" onclick="stopChange()" v-on:click="endStudySession">Stop</button>
 
             <div id="studyLength">
                 <p>Planned Study Period (minutes)</p>
@@ -37,7 +43,7 @@
             </div>
                 
             
-    </div>
+     </div>
     </div>
         <!--The button elements for the main box-->
 
@@ -45,7 +51,7 @@
     <div class="sideButtons">
             <button id="b4">Settings</button>
             <button id="b5">Data</button>
-            <button id="b6">Hide/show clock</button>
+            <button id="b6" onclick="clockChange()">Hide/show clock</button>
     </div>
 
 <script src="{{ url_for('static', filename='script.js') }}"></script>

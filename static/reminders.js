@@ -62,6 +62,10 @@ const study = Vue.createApp({
 
         },
         mounted() {
+
+            breakDistance = parseInt(document.getElementById("breakDistanceSlider").value);
+            studyLength = parseInt(document.getElementById("studyLengthSlider").value);
+            
             document.addEventListener('mousemove', function() {
                 if (isBreak) {
                     var overtime = parseInt(Date.now() - breakStart);
