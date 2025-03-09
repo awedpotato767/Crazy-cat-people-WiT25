@@ -50,3 +50,7 @@ rsconnect/
 
 #pycache
 __pycache__/
+
+#vscode configs
+
+.vscode/
