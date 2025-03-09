@@ -1,3 +1,4 @@
+<<<<<<< HEAD:style.css
 #backBox {
     position: fixed;
     padding: 0px;
@@ -171,3 +172,170 @@ button:hover {
     top: 500px;
     left: 1100px;
 }
+=======
+#backBox {
+    position: fixed;
+    padding: 0px;
+    background-color: #ffb240;
+    width: 1000px;
+    height: 665px;
+    left: 30px;
+    top: 30px;
+}
+
+
+body {
+    background-color: #ffef91;
+}
+
+#clock {
+    font: 150px Arial;
+    position: fixed;
+    color: black;
+    left: 200px;
+    top: 0px;
+}
+
+#text {
+    font: 50px Arial;
+    position: fixed;
+    color: black;
+    left: 100px;
+    top: 250px;
+    width: 900px;
+}
+
+#stars {
+    font: 75px Arial;
+    position: fixed;
+    color: black;
+    left: 120px;
+    top: 250px;
+    width: 400px;
+    opacity: 0;
+}
+
+#studyLength {
+    position: fixed;
+    top: 500px;
+    left: 100px;
+    display: block;
+}
+
+#studyLengthSlider {
+    accent-color: #ff6600;
+}
+
+#breakDistance {
+    position: fixed;
+    top: 500px;
+    left: 700px;
+    display: block;
+}
+
+#breakDistanceSlider {
+    accent-color: #ff6600;
+}
+
+#start {
+    position: fixed;
+    border: none;
+    height: 75px;
+    width: 250px;
+    top: 500px;
+    left: 400px;
+    font: 36px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: block;
+}
+
+#stop {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    top: 500px;
+    left: 400px;
+    font: 36px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: none;
+}
+
+#shortBreak {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    top: 500px;
+    left: 100px;
+    font: 36px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: none;
+}
+
+#longBreak {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    top: 500px;
+    left: 700px;
+    font: 36px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: none;
+}
+
+button:hover {
+    cursor: pointer;
+    text-decoration-line: underline;
+}
+
+
+
+#b4 {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    font: 36px Arial;
+    color: black;
+    transition-duration: 0.1s;
+    background-color: #ffb240;
+    top: 100px;
+    left: 1100px;
+}
+
+#b5 {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    font: 36px Arial;
+    color: black;
+    transition-duration: 0.1s;
+    background-color: #ffb240;
+    top: 300px;
+    left: 1100px;
+}
+
+#b6 {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    font: 36px Arial;
+    color: black;
+    transition-duration: 0.1s;
+    background-color: #ffb240;
+    top: 500px;
+    left: 1100px;
+}
+>>>>>>> 6f4d79e52e37739a80c082035d5bf28c220b7f7f:static/style.css

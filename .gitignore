@@ -47,3 +47,10 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+#pycache
+__pycache__/
+
+#vscode configs
+
+.vscode/
