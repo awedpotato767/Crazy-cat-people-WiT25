@@ -4,6 +4,8 @@ import math
 import matplotlib.pyplot as plt
 import os
 
+from numpy._core.numerictypes import datetime64, timedelta64
+
 # imports data from logfiles that look as follows:
 # [2020-01-01T00:00:00] session started
 # [2020-01-01T00:05:00] short_break started
@@ -71,19 +73,26 @@ def get_composite_stats():
         ("average long break time",'timedelta64[s]'),
         ("end time",'datetime64[s]')]
 
-    _study_stats = np.array([(np.datetime64('now'),0.0,
-    np.timedelta64(),0,np.timedelta64(),
-    np.timedelta64(),0,np.timedelta64(),
-    np.timedelta64(),0,np.timedelta64(),
-    np.datetime64())],dtype=session_dtype)
-    study_stats = np.repeat(_study_stats,len(session_log_filenames),axis=0)
+    _study_stats = np.array([(datetime64(), 0, timedelta64(), 0, timedelta64(),
+        timedelta64(), 0, timedelta64(), timedelta64(), 0, timedelta64(), datetime64())],dtype=session_dtype)
+    study_stats = np.repeat( _study_stats,len(session_log_filenames), axis=0 )
+    bad_file_count = 0
     for fileindex in range(len(session_log_filenames)):
 
-
+        bad_file = False
         #read file contents into a python list
         with open("../session logs/"+session_log_filenames[fileindex]) as log_file:
-            log_contents = log_file.readlines()
+            log_contents = log_file.read()
+            if "session_rating" not in log_contents:
+                bad_file = True
+            log_contents = log_contents.rstrip("\n").split("\n")
 
+
+
+
+        if bad_file:
+            bad_file_count += 1
+            continue
         _session_data = np.array([[np.datetime64(),"",""]])
         session_data = np.repeat(_session_data,len(log_contents),axis=0)
 
@@ -96,7 +105,9 @@ def get_composite_stats():
                 session_data[row][1] = __temp[1]
                 session_data[row][2] = __temp[2]
             except:
-                print("error",__temp)
+                print(__temp)
+
+
 
         __temp = [np.datetime64(),0.0,
         np.timedelta64(),0,np.timedelta64(),
@@ -110,10 +121,10 @@ def get_composite_stats():
         break_statistics = get_break_stats(session_data[:-2])
         __temp[2:11] = break_statistics
         __temp[11] = session_data[-2][0]
-        study_stats[fileindex] = tuple(__temp)
+        study_stats[fileindex-bad_file_count] = tuple(__temp)
     
     study_stats.sort(order="start time")
-    return study_stats
+    return study_stats[:-bad_file_count]
 
 
 
