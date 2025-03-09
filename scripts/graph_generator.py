@@ -122,7 +122,7 @@ def get_composite_stats():
         __temp[2:11] = break_statistics
         __temp[11] = session_data[-2][0]
         study_stats[fileindex-bad_file_count] = tuple(__temp)
-    
+
     study_stats.sort(order="start time")
     return study_stats[:-bad_file_count]
 
@@ -159,12 +159,13 @@ def render_stats(composite_stats):
     #break count vs rating
     fig,ax = plt.subplots()
     y = np.array([composite_stats[i][1] for i in range(len(composite_stats))])
-    x = np.array([composite_stats[i][3] for i in range(len(composite_stats))])
+    x = np.array([composite_stats[i][3]
+                    /(((composite_stats[i][11]-composite_stats[i][0])-composite_stats[i][5]-composite_stats[i][8])/np.timedelta64(1,'h')) for i in range(len(composite_stats))])
     s = np.array([composite_stats[i][2]/np.timedelta64(5,'s') for i in range(len(composite_stats))])
     c = np.array([composite_stats[i][4]/np.timedelta64(1,'s') for i in range(len(composite_stats))])
     ax.scatter(x=x,y=y,c=c)
     ax.set_xlim(0,max(x)+.4)
-    ax.set_xlabel("Number of rest breaks taken")
+    ax.set_xlabel("Number of rest breaks taken per hour of work")
     ax.set_ylim(0,5.5)
     ax.set_ylabel("Session rating")
     ax.legend(loc='best',labels=["color: average break length"])
