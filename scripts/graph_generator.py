@@ -68,12 +68,14 @@ def get_composite_stats():
         ("average short break time",'timedelta64[s]'),
         ("total long break time",'timedelta64[s]'),
         ("number of long breaks",np.int16),
-        ("average long break time",'timedelta64[s]')]
+        ("average long break time",'timedelta64[s]'),
+        ("end time",'datetime64[s]')]
 
     _study_stats = np.array([(np.datetime64('now'),0.0,
     np.timedelta64(),0,np.timedelta64(),
     np.timedelta64(),0,np.timedelta64(),
-    np.timedelta64(),0,np.timedelta64())],dtype=session_dtype)
+    np.timedelta64(),0,np.timedelta64(),
+    np.datetime64())],dtype=session_dtype)
     study_stats = np.repeat(_study_stats,len(session_log_filenames),axis=0)
     for fileindex in range(len(session_log_filenames)):
 
@@ -99,14 +101,17 @@ def get_composite_stats():
         __temp = [np.datetime64(),0.0,
         np.timedelta64(),0,np.timedelta64(),
         np.timedelta64(),0,np.timedelta64(),
-        np.timedelta64(),0,np.timedelta64()]
+        np.timedelta64(),0,np.timedelta64(),
+        np.datetime64()]
         __temp[0] = session_data[0][0]
         __temp[1] = int(session_data[-1][2])
 
         #(exclude last row as this contains session rating not break info)
         break_statistics = get_break_stats(session_data[:-2])
         __temp[2:11] = break_statistics
+        __temp[11] = session_data[-2][0]
         study_stats[fileindex] = tuple(__temp)
+    study_stats.sort(order="start time")
     return study_stats
 
 
@@ -114,15 +119,48 @@ def get_composite_stats():
 
 def render_stats(composite_stats):
     #rating over time graph
-    rating_time, rating_time_ax = plt.subplots()
-    data = np.array([[composite_stats[i][0:1]] for i in range(len(composite_stats))])
-    rating_time_ax.plot(data)
-   # rating_time_ax.set(ylim=(0,5))
-    #plt.show()
+    fig,ax = plt.subplots()
+    data = np.array([[composite_stats[i][0],composite_stats[i][1]] for i in range(len(composite_stats))])
+    ax.plot(data[:,0], data[:,1])
+    ax.set(ylim=(0,5.1))
+    fig.set_size_inches(12,6)
+    fig.set_dpi(300)
+    plt.savefig("../static/rating_time.png")
+
+    #stacked study time over time graph
+    fig,ax = plt.subplots()
+    y1 = np.array([((composite_stats[i][11]-composite_stats[i][0])-composite_stats[i][5]-composite_stats[i][8])/np.timedelta64(60,'s')
+                        for i in range(len(composite_stats))])
+    y2 = np.array([composite_stats[i][5]/np.timedelta64(60,'s') for i in range(len(composite_stats))])
+    y3 = np.array([composite_stats[i][8]/np.timedelta64(60,'s') for i in range(len(composite_stats))])
+
+    y = np.vstack([y1,y2,y3])
+    x = np.array([composite_stats[i][0] for i in range(len(composite_stats))])
+
+    ax.stackplot(x,y, baseline="zero", labels=["total study time", "total short breaks", "total long breaks"])
+    fig.set_size_inches(12,6)
+    fig.set_dpi(300)
+    ax.legend(loc='upper left', reverse=True)
+    plt.savefig("../static/time_time.png")
+
+    #break count vs rating
+    fig,ax = plt.subplots()
+    y = np.array([composite_stats[i][1] for i in range(len(composite_stats))])
+    x = np.array([composite_stats[i][3] for i in range(len(composite_stats))])
+    s = np.array([composite_stats[i][2]/np.timedelta64(5,'s') for i in range(len(composite_stats))])
+    c = np.array([composite_stats[i][4]/np.timedelta64(1,'s') for i in range(len(composite_stats))])
+    ax.scatter(x=x,y=y,c=c)
+    ax.set_xlim(0,max(x)+.4)
+    ax.set_xlabel("Number of rest breaks taken")
+    ax.set_ylim(0,5.5)
+    ax.set_ylabel("Session rating")
+    ax.legend(loc='best',labels=["color: average break length"])
+    fig.set_size_inches(6,6)
+    fig.set_dpi(300)
+    plt.savefig("../static/break_count_rating.png")
     return None
 
 if __name__ == "__main__":
 
     data = get_composite_stats()
-    print(data)
     render_stats(data)
