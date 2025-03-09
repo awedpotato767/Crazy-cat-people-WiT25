@@ -36,11 +36,20 @@ function menuChange1() {
   document.getElementById("stop").style.display = "block";
   document.getElementById("shortBreak").style.display = "block";
   document.getElementById("longBreak").style.display = "block";
+  document.getElementById("endBreak").style.display = "none";
 
   thisTime = parseInt(document.getElementById("breakDistanceSlider").value);
   document.getElementById("text").innerHTML =
     "You should take a break in " + thisTime + " minutes :)";
   timer = setInterval(breakTimer(), 60000);
+}
+
+function aBreak() {
+  document.getElementById("stop").style.display = "none";
+  document.getElementById("shortBreak").style.display = "none";
+  document.getElementById("longBreak").style.display = "none";
+  document.getElementById("text").innerHTML = "Touch some grass!";
+  document.getElementById("endBreak").style.display = "block";
 }
 
 function clockChange() {

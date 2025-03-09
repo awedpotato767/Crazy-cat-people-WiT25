@@ -89,6 +89,20 @@ body {
     display: block;
 }
 
+#endBreak {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    top: 500px;
+    left: 400px;
+    font: 36px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: none;
+}
+
 #stop {
     position: fixed;
     border: none;

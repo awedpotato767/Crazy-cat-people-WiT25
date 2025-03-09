@@ -27,9 +27,10 @@
 
         <div id="mainButtons">
             <button id="start" onclick="menuChange1()" v-on:click="startStudy">Start</button>
-            <button id="shortBreak" v-on:click="startShortBreak">Take a short break</button>
-            <button id="longBreak" v-on:click="startLongBreak">Take a long break</button>
+            <button id="shortBreak" onclick="aBreak()" v-on:click="startShortBreak">Take a short break</button>
+            <button id="longBreak" onclick="aBreak()" v-on:click="startLongBreak">Take a long break</button>
             <button id="stop" onclick="stopChange()" v-on:click="endStudySession">Stop</button>
+            <button id="endBreak" onclick="menuChange1()">End break</button>
 
             <div id="studyLength">
                 <p>Planned Study Period (minutes)</p>
