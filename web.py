@@ -30,11 +30,27 @@ def addlog():
     while (os.path.isfile(f'session logs/{creation_day} session {session}')):
         session += 1
 
-    if log != 'session started':
-        session -= 1
-    app.logger.info(session, log)
+    session -= 1
 
-    with open(f'session logs/{creation_day} session {session}', "a+") as logfile:
+    with open(f'session logs/{creation_day} session {session}', "a") as logfile:
+        logfile.write(f'[{np.datetime64("now")}] {log}\n')
+
+    return 'success'
+
+@app.route('/newlog', methods=['POST', 'GET'])
+def newlog():
+    app.logger.info("new log made")
+    log = request.get_data()
+    log = json.loads(log)
+
+    creation_day = np.datetime64('now','D')
+    session = 1
+    #get to the first unused session
+    while (os.path.isfile(f'session logs/{creation_day} session {session}')):
+        session += 1
+
+
+    with open(f'session logs/{creation_day} session {session}', "w+") as logfile:
         logfile.write(f'[{np.datetime64("now")}] {log}\n')
 
     return 'success'

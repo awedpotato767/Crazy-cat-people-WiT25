@@ -80,7 +80,7 @@ function stopChange() {
   clearInterval(timer);
 }
 
-setInterval(updateClock, 1000);
+setInterval(updateClock, 100);
 
 function breakTimer() {
   document.getElementById("text").innerHTML =

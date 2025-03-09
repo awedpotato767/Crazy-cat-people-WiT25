@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,20 +11,21 @@
 <body>
 
    <div id="backBox">
-       
-     <p id="clock">1</p>
-     <p id="text">Are you ready to start studying?</p>
-     <div class = stars>
-        <button id = star1 onclick="starChange(1)">☆</button>
-        <button id = star2 onclick="starChange(2)">☆</button>
-        <button id = star3 onclick="starChange(3)">☆</button>
-        <button id = star4 onclick="starChange(4)">☆</button>
-        <button id = star5 onclick="starChange(5)">☆</button>
-     </div>
-    
-    <!--The text elements for the main box-->
+        <div id="display">
+            <p id="clock"></p></p>
+            <p id="text">Are you ready to start studying?</p>
+            <div class = stars>
+                    <button id = star1 onclick="starChange(1)">☆</button>
+                    <button id = star2 onclick="starChange(2)">☆</button>
+                    <button id = star3 onclick="starChange(3)">☆</button>
+                    <button id = star4 onclick="starChange(4)">☆</button>
+                    <button id = star5 onclick="starChange(5)">☆</button>
+                 </div>
+        </div>
 
-     <div id="mainButtons">
+<!--The text elements for the main box-->
+
+        <div id="mainButtons">
             <button id="start" onclick="menuChange1()" v-on:click="startStudy">Start</button>
             <button id="shortBreak" v-on:click="startShortBreak">Take a short break</button>
             <button id="longBreak" v-on:click="startLongBreak">Take a long break</button>
@@ -42,65 +42,7 @@
                 <input type="range" min="15" max="60" id="breakDistanceSlider" v-model="breakDistance">
                 <label for="breakDistanceSlider">{{breakDistance}}</label>
             </div>
-                
-            
-     </div>
-    </div>
-        <!--The button elements for the main box-->
 
-     
-    <div class="sideButtons">
-            <button id="b4">Settings</button>
-            <button id="b5">Data</button>
-            <button id="b6" onclick="clockChange()">Hide/show clock</button>
-    </div>
-
-<script src="{{ url_for('static', filename='script.js') }}"></script>
-<script src="{{ url_for('static', filename='reminders.js') }}"></script>
-</body>
-</html>
-
-
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn out </title>
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
-    <script src="https://unpkg.com/vue@3.0.2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body>
-
-   <div id="backBox">
-        <div id="display">
-            <p id="clock">1</p>
-            <p id="text">This is sample text</p>
-            <p id="stars">SO IS THIS AHHHHH HHHHHHH</p>
-        </div>
-
-<!--The text elements for the main box-->
-
-        <div id="mainButtons">
-            <button id="start" onclick="menuChange1()" v-on:click="startStudy">Start</button>
-            <button id="shortBreak" v-on:click="startShortBreak">Take a short break</button>
-            <button id="longBreak" v-on:click="startLongBreak">Take a long break</button>
-            <button id="stop" v-on:click="endStudySession">Stop</button>
-
-            <div id="studyLength">
-                <p>Planned Study Period (minutes)</p>
-                <input type="range" min="15" max="300" id="studyLengthSlider" v-model="studyLength">
-                <label for="studyLengthSlider">{{studyLength}}</label>
-            </div>
-
-            <div id="breakDistance">
-                <p>Time between breaks (minutes)</p>
-                <input type="range" min="15" max="60" id="breakDistanceSlider" v-model="breakDistance">
-                <label for="breakDistanceSlider">{{breakDistance}}</label>
-            </div>
-                        
         </div>
 
         <div id="graphs-container">
@@ -114,10 +56,9 @@
         </div>
 
         <div class="sideButtons">
-            <button id="b4">Settings</button>
             <button id="b5" onclick="viewGraphs()">Data</button>
-            <button id="b6">Hide/show clock</button>
-        </div> 
+            <button id="b6" onclick="clockChange()">Hide/show clock</button>
+        </div>
 
     </div>
         <!--The button elements for the main box-->
@@ -127,6 +68,3 @@
     <script src="{{ url_for('static', filename='reminders.js') }}"></script>
 </body>
 </html>
-
-
->>>>>>> 8b23d86627336a89f93b4bbd3fc49c3344ea6d39
