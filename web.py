@@ -19,7 +19,7 @@ def getgraphs():
     #put the graph_generator.py stuff here please
     return 'success'
 
-@app.route('/addlog', methods=['POST', 'GET'])
+@app.route('/addlog', methods=['POST'])
 def addlog():
     log = request.get_data()
     log = json.loads(log)
@@ -37,7 +37,7 @@ def addlog():
 
     return 'success'
 
-@app.route('/newlog', methods=['POST', 'GET'])
+@app.route('/newlog', methods=['POST'])
 def newlog():
     app.logger.info("new log made")
     log = request.get_data()
