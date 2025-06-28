@@ -1,3 +1,4 @@
+from types import NoneType
 from flask import Flask, request, render_template, session, jsonify, send_from_directory
 import json
 from scripts import graph_generator
@@ -15,8 +16,13 @@ def front_page():
     return render_template("index.html")
 
 @app.route('/generategraphs', methods=['POST', 'GET'])
-def getgraphs():
-    #put the graph_generator.py stuff here please
+def generategraphs():
+    study_stats = graph_generator.get_composite_stats()
+    if not isinstance(study_stats,NoneType):
+        graph_generator.render_stats(study_stats)
+        return 'success'
+    else:
+        print("OnO there is no data to chew on.")
     return 'success'
 
 @app.route('/addlog', methods=['POST'])

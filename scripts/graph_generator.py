@@ -2,6 +2,7 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+plt.switch_backend('Agg')
 import os
 
 from numpy._core.numerictypes import datetime64, timedelta64
@@ -50,7 +51,7 @@ def get_break_stats(session_data):
             total_long_breaks, long_break_counter, avg_long_breaks)
 
 def get_composite_stats():
-    session_log_filenames = os.listdir("../session logs")
+    session_log_filenames = os.listdir("session logs")
 
     #create a np array that has one row for each log file
     #each row has columns:
@@ -81,7 +82,7 @@ def get_composite_stats():
 
         bad_file = False
         #read file contents into a python list
-        with open("../session logs/"+session_log_filenames[fileindex]) as log_file:
+        with open("session logs/"+session_log_filenames[fileindex]) as log_file:
             log_contents = log_file.read()
             if "session_rating" not in log_contents:
                 bad_file = True
@@ -124,7 +125,13 @@ def get_composite_stats():
         study_stats[fileindex-bad_file_count] = tuple(__temp)
 
     study_stats.sort(order="start time")
-    return study_stats[:-bad_file_count]
+    if bad_file_count == 0 and len(study_stats) > 0:
+        return study_stats
+    elif len(study_stats[:-bad_file_count]) > 0:
+        return study_stats[:-bad_file_count]
+    else:
+        raise Exception(f'{bad_file_count}/{len(session_log_filenames)} files were bad, the data is empty.')
+        return None
 
 
 
@@ -134,11 +141,15 @@ def render_stats(composite_stats):
     #rating over time graph
     fig,ax = plt.subplots()
     data = np.array([[composite_stats[i][0],composite_stats[i][1]] for i in range(len(composite_stats))])
-    ax.plot(data[:,0], data[:,1])
+    try:
+        ax.plot(data[:,0], data[:,1])
+    except IndexError as error:
+        print(f'found error "{error}": dumping data variable\n\n{data}')
+
     ax.set(ylim=(0,5.1))
     fig.set_size_inches(12,6)
     fig.set_dpi(300)
-    plt.savefig("../static/rating_time.png")
+    plt.savefig("static/rating_time.png")
 
     #stacked study time over time graph
     fig,ax = plt.subplots()
@@ -154,7 +165,7 @@ def render_stats(composite_stats):
     fig.set_size_inches(12,6)
     fig.set_dpi(300)
     ax.legend(loc='upper left', reverse=True)
-    plt.savefig("../static/time_time.png")
+    plt.savefig("static/time_time.png")
 
     #break count vs rating
     fig,ax = plt.subplots()
@@ -171,7 +182,7 @@ def render_stats(composite_stats):
     ax.legend(loc='best',labels=["color: average break length"])
     fig.set_size_inches(6,6)
     fig.set_dpi(300)
-    plt.savefig("../static/break_count_rating.png")
+    plt.savefig("static/break_count_rating.png")
     return None
 
 if __name__ == "__main__":
