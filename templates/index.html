@@ -34,6 +34,7 @@
 
             <div id="studyLength">
                 <p>Planned Study Period (minutes)</p>
+                <p>{{tiempo}}</p>
                 <input type="range" min="15" max="300" id="studyLengthSlider" v-model="studyLength">
                 <label for="studyLengthSlider">{{studyLength}}</label>
             </div>
@@ -48,7 +49,7 @@
 
         <div id="graphs-container">
             <button id="gotobuttons" onclick="viewButtons()">Go back</button>
-            <button id="regengraphs" v-on:click="getGraphData">Regenerate graphs</button><br>
+            <button id="regengraphs" onclick="getGraphData()">Regenerate graphs</button><br>
             <div style="display:table">
                 <img src="./static/break_count_rating.png" width="320">
                 <img src="./static/rating_time.png" width="600">

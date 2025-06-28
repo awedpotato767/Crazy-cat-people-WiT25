@@ -109,18 +109,9 @@ function viewButtons() {
   document.getElementById("display").style.display = "block";
 }
 
-const graphs = Vue.createApp({
-  data() {
-    return {};
-  },
-  methods: {
-    getGraphData: function () {
-      axios.post("/generategraphs");
-    },
-  },
-  mounted() {
-    this.getGraphData();
-  },
-});
+function getGraphData() {
+  axios.post("/generategraphs");
+}
 
-graphs.mount("#graphs-container");
+// run once when page loads
+getGraphData();
