@@ -12,7 +12,7 @@
 
    <div id="backBox">
         <div id="display">
-            <p id="clock"></p></p>
+            <p id="clock"></p>
             <p id="text">Are you ready to start studying?</p>
             <div class = stars>
                     <button id = star1 onclick="starChange(1)">☆</button>
@@ -21,6 +21,7 @@
                     <button id = star4 onclick="starChange(4)">☆</button>
                     <button id = star5 onclick="starChange(5)">☆</button>
                  </div>
+
         </div>
 
 <!--The text elements for the main box-->
@@ -31,6 +32,7 @@
             <button id="longBreak" onclick="aBreak()" v-on:click="startLongBreak">Take a long break</button>
             <button id="stop" onclick="stopChange()" v-on:click="endStudySession">Stop</button>
             <button id="endBreak" onclick="menuChange1()">End break</button>
+            <button id="submitRating" onclick="submitRating()">Submit rating</button>
 
             <div id="studyLength">
                 <p>Planned Study Period (minutes)</p>

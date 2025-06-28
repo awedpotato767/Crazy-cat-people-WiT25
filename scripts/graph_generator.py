@@ -150,6 +150,7 @@ def render_stats(composite_stats):
     fig.set_size_inches(12,6)
     fig.set_dpi(300)
     plt.savefig("static/rating_time.png")
+    plt.close()
 
     #stacked study time over time graph
     fig,ax = plt.subplots()
@@ -166,7 +167,7 @@ def render_stats(composite_stats):
     fig.set_dpi(300)
     ax.legend(loc='upper left', reverse=True)
     plt.savefig("static/time_time.png")
-
+    plt.close()
     #break count vs rating
     fig,ax = plt.subplots()
     y = np.array([composite_stats[i][1] for i in range(len(composite_stats))])
@@ -183,6 +184,7 @@ def render_stats(composite_stats):
     fig.set_size_inches(6,6)
     fig.set_dpi(300)
     plt.savefig("static/break_count_rating.png")
+    plt.close()
     return None
 
 if __name__ == "__main__":

@@ -18,8 +18,10 @@ slider2.oninput = function() {
  */
 
 var thisTime;
+var currentStars = 0;
 
 function starChange(starVal) {
+  currentStars = starVal;
   for (j = 1; j < 6; j++) {
     if (j <= starVal) {
       document.getElementById("star" + j).innerHTML = "★";
@@ -85,8 +87,20 @@ function stopChange() {
   document.getElementById("longBreak").style.display = "none";
   document.getElementById("text").innerHTML =
     "please rate your study session :)";
+  document.getElementById("submitRating").style.display = "block";
 
   clearInterval(timer);
+}
+
+function submitRating() {
+  promise = axios.post(
+    "/addlog",
+    JSON.stringify("session rating " + currentStars),
+  );
+  promise.then(function (response) {
+    location.reload();
+  });
+  return false;
 }
 
 setInterval(updateClock, 100);
