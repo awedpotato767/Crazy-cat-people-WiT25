@@ -54,6 +54,11 @@ function aBreak() {
   document.getElementById("endBreak").style.display = "block";
 }
 
+function endBreak() {
+  axios.post("/addlog", JSON.stringify("break ended"));
+  menuChange1();
+}
+
 function clockChange() {
   if (document.getElementById("clock").style.display == "none") {
     document.getElementById("clock").style.display = "block";
@@ -92,12 +97,13 @@ function stopChange() {
   clearInterval(timer);
 }
 
-function submitRating() {
+async function submitRating() {
   promise = axios.post(
     "/addlog",
-    JSON.stringify("session rating " + currentStars),
+    JSON.stringify("session_rating " + currentStars),
   );
-  promise.then(function (response) {
+  promise.then(async function (response) {
+    await getGraphData();
     location.reload();
   });
   return false;
@@ -123,9 +129,6 @@ function viewButtons() {
   document.getElementById("display").style.display = "block";
 }
 
-function getGraphData() {
-  axios.post("/generategraphs");
+async function getGraphData() {
+  await axios.post("/generategraphs");
 }
-
-// run once when page loads
-getGraphData();

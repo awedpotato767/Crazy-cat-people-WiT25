@@ -36,15 +36,18 @@ def get_break_stats(session_data):
     if total_short_breaks != 0:
         avg_short_breaks = total_short_breaks/short_break_counter
     else:
-        avg_short_breaks = None
+        avg_short_breaks = np.timedelta64(0)
     if total_long_breaks != 0:
         avg_long_breaks = total_long_breaks/long_break_counter
     else:
-        avg_long_breaks = None
+        avg_long_breaks = np.timedelta64(0)
 
     total_break_counter = short_break_counter + long_break_counter
     total_break_time = total_long_breaks + total_short_breaks
-    average_break_time = np.timedelta64(total_break_time,'s')/total_break_counter
+    if total_break_counter != 0:
+        average_break_time = np.timedelta64(total_break_time,'s')/total_break_counter
+    else:
+        average_break_time = np.timedelta64(0)
 
     return (total_break_time,total_break_counter, average_break_time,
             total_short_breaks,short_break_counter,avg_short_breaks,
@@ -115,7 +118,9 @@ def get_composite_stats():
         np.timedelta64(),0,np.timedelta64(),
         np.timedelta64(),0,np.timedelta64(),
         np.datetime64()]
+        #start time
         __temp[0] = session_data[0][0]
+        #session rating
         __temp[1] = int(session_data[-1][2])
 
         #(exclude last row as this contains session rating not break info)
@@ -173,7 +178,7 @@ def render_stats(composite_stats):
     y = np.array([composite_stats[i][1] for i in range(len(composite_stats))])
     x = np.array([composite_stats[i][3]
                     /(((composite_stats[i][11]-composite_stats[i][0])-composite_stats[i][5]-composite_stats[i][8])/np.timedelta64(1,'h')) for i in range(len(composite_stats))])
-    s = np.array([composite_stats[i][2]/np.timedelta64(5,'s') for i in range(len(composite_stats))])
+    #s = np.array([composite_stats[i][2]/np.timedelta64(5,'s') for i in range(len(composite_stats))])
     c = np.array([composite_stats[i][4]/np.timedelta64(1,'s') for i in range(len(composite_stats))])
     ax.scatter(x=x,y=y,c=c)
     ax.set_xlim(0,max(x)+.4)
@@ -190,4 +195,5 @@ def render_stats(composite_stats):
 if __name__ == "__main__":
 
     data = get_composite_stats()
+    print(data)
     render_stats(data)

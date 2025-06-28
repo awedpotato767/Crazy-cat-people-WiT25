@@ -23,13 +23,13 @@ const study = Vue.createApp({
       axios.post("/addlog", JSON.stringify("session ended"));
     },
     startShortBreak: function () {
-      axios.post("/addlog", JSON.stringify("short break started"));
+      axios.post("/addlog", JSON.stringify("short_break started"));
       this.isBreak = true;
       this.breakType = "short";
       this.breakStart = Date.now();
     },
     startLongBreak: function () {
-      axios.post("/addlog", JSON.stringify("long break started"));
+      axios.post("/addlog", JSON.stringify("long_break started"));
       this.isBreak = true;
       this.breakType = "long";
       this.breakStart = Date.now();

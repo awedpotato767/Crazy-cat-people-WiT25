@@ -20,6 +20,7 @@ def generategraphs():
     study_stats = graph_generator.get_composite_stats()
     if not isinstance(study_stats,NoneType):
         graph_generator.render_stats(study_stats)
+        print("generation complete")
         return 'success'
     else:
         print("OnO there is no data to chew on.")
