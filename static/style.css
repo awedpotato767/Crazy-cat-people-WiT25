@@ -51,7 +51,7 @@ body {
     display: none;
 }
 
-#studyLength {
+#studyLengthInput {
     position: fixed;
     top: 500px;
     left: 100px;
@@ -59,24 +59,24 @@ body {
 }
 
 #studyLengthSlider,
-#breakDistanceSlider {
+#breakIntervalSlider {
     accent-color: #ff6600;
     width: 250px;
 }
 
-#breakDistance {
+#breakIntervalInput {
     position: fixed;
     top: 500px;
     left: 700px;
     display: block;
 }
 
-#breakDistance p,
-#studyLength p {
+#breakIntervalInput p,
+#studyLengthInput p {
     font: 20px Arial;
 }
 
-#start {
+#startSessionButton {
     position: fixed;
     border: none;
     height: 100px;
@@ -90,7 +90,7 @@ body {
     display: block;
 }
 
-#endBreak {
+#endBreakButton {
     position: fixed;
     border: none;
     height: 100px;
@@ -104,7 +104,7 @@ body {
     display: none;
 }
 
-#stop {
+#endSessionButton {
     position: fixed;
     border: none;
     height: 100px;

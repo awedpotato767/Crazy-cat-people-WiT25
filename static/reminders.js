@@ -1,7 +1,75 @@
+var studyLength = document.getElementById("studyLengthSlider").value;
+var breakInterval = document.getElementById("breakIntervalSlider").value;
+
+var isBreak = false;
+
+//create a countdown clock. assume this value is nonsense until the value is initialised.
+var breakCountdown = breakInterval;
+setInterval(() => {
+  breakCountdown --;
+}, 60000);
+//initialise this here to make it global.
+var breakCountdownText;
+var breakReminderTimeout;
+
+
+function startStudy() {
+  axios.post("/newlog", JSON.stringify("session started"));
+  studyLength = document.getElementById("studyLengthSlider").value;
+  breakInterval = document.getElementById("breakIntervalSlider").value;
+  isBreak = false;
+  //initialise the countdown clock
+  breakCountdown = breakInterval;
+  breakReminderTimeout = setTimeout(showBreakReminders, 60000*breakCountdown);
+  changeToWorkUi();
+}
+
+function startShortBreak(){
+  startBreak(5);
+  axios.post("/addlog", JSON.stringify("short_break started"));
+}
+function startLongBreak(){
+  startBreak(15);
+  axios.post("/addlog", JSON.stringify("long_break started"));
+}
+function endBreak() {
+  isBreak = false;
+  axios.post("/addlog", JSON.stringify("break ended"));
+  changeToWorkUi();
+}
+
+function endStudySession(){
+  axios.post("/addlog", JSON.stringify("session ended"));
+  changeToRatingUi();
+}
+
+
+function startBreak(minutes) {
+  isBreak = true;
+  //remind the user to take a break when that is due
+  clearTimeout(breakReminderTimeout);//FIXME
+  breakReminderTimeout = setTimeout(showBreakReminders, 60000*breakCountdown);
+
+  //set up a countdown until the next break
+  breakCountdown = breakInterval;  //remind the user to get back to work after a delay
+  //TODO implement showWorkReminders
+  setTimeout(showWorkReminders,60000*minutes);
+  changeToBreakUi();
+}
+
+function showWorkReminders() {
+
+}
+
+function  showBreakReminders() {
+  
+}
+//OBSELETE
+
+/*
 var tiempo = 0;
 var breakDistance;
 var studyLength;
-
 const study = Vue.createApp({
   data() {
     return {
@@ -41,7 +109,7 @@ const study = Vue.createApp({
     },
     startStudy: function () {
       console.log("let the study commence");
-      axios.post("/newlog", JSON.stringify("session started"));
+      axios.post("/newlog", json.stringify("session started"));
       var self = this;
       setTimeout(
         function () {
@@ -82,3 +150,5 @@ const study = Vue.createApp({
 });
 
 study.mount("#mainButtons");
+
+*/
