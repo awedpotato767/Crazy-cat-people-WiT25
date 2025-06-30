@@ -65,10 +65,25 @@ def newlog():
 
 @app.route('/workreminder', methods=['get'])
 def fetchworkreminder():
-    with open("static/work_reminders.txt", "w") as list_file:
+    with open("static/work_reminders.txt", "r") as list_file:
         response_list = list_file.readlines()
         response_list = [line for line in response_list if str(line).lstrip(" #") == str(line)]
         return random.choice(response_list)
+
+@app.route('/breakreminder', methods=['get'])
+def fetchbreakreminder():
+    with open("static/break_reminders.txt", "r") as list_file:
+        response_list = list_file.readlines()
+        response_list = [line for line in response_list if str(line).lstrip(" #") == str(line)]
+        return random.choice(response_list)
+
+@app.route('/endreminder', methods=['get'])
+def fetchendreminder():
+    with open("static/end_reminders.txt", "r") as list_file:
+        response_list = list_file.readlines()
+        response_list = [line for line in response_list if str(line).lstrip(" #") == str(line)]
+        return random.choice(response_list)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

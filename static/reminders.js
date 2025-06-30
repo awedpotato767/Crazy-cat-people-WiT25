@@ -14,6 +14,7 @@ var breakReminderTimeout;
 var workReminderTimeout;
 //create a countdown variable for the study session
 var endReminderTimeout;
+var reminderInterval;
 
 
 function startStudy() {
@@ -44,11 +45,14 @@ function startLongBreak(){
 function endBreak() {
   isBreak = false;
   clearTimeout(workReminderTimeout);
+  clearInterval(reminderInterval);
   axios.post("/addlog", JSON.stringify("break ended"));
   changeToWorkUi();
 }
 
 function endStudySession(){
+  clearTimeout(endReminderTimeout);
+  clearInterval(reminderInterval);
   axios.post("/addlog", JSON.stringify("session ended"));
   changeToRatingUi();
 }
@@ -69,7 +73,8 @@ async function submitRating() {
 function startBreak(minutes) {
   isBreak = true;
   //remind the user to take a break when that is due
-  clearTimeout(breakReminderTimeout);//FIXME
+  clearTimeout(breakReminderTimeout);
+  clearInterval(reminderInterval);
   breakReminderTimeout = setTimeout(showBreakReminders, 60000*breakCountdown);
 
   //set up a countdown until the next break
@@ -80,17 +85,32 @@ function startBreak(minutes) {
 }
 
 function showWorkReminders() {
-  rawMessage = axios.get("/workreminder", {responsetype:'text'})
-  document.getElementById("text").innerHTML = rawMessage;//TODO implement the above url in flask
+  reminderInterval = setInterval(() => {
+    axios.get("/workreminder", {responsetype:'text'})
+    .then(function (response){
+      document.getElementById("text").innerHTML = response.data;
+    })
+  }, 30000);
 }
 
 function  showBreakReminders() {
-  if 
+  reminderInterval = setInterval(() => {
+    axios.get("/breakreminder", {responsetype:'text'})
+    .then(function (response){
+      document.getElementById("text").innerHTML = response.data;
+    })
+  }, 30000);
 }
 
 function showEndReminder(){
-
+  reminderInterval = setInterval(() => {
+    axios.get("/endreminder", {responsetype:'text'})
+    .then(function (response){
+      document.getElementById("text").innerHTML = response.data;
+    })
+  }, 30000);
 }
+
 //OBSELETE
 
 /*
