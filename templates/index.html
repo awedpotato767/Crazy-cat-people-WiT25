@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn out </title>
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
-    <!--<script src="https://unpkg.com/vue@3.0.2"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
@@ -35,28 +34,39 @@
             <button id="submitRating" onclick="submitRating()">Submit rating</button>
 
             <div id="studyLengthInput">
-              <p>I plan to study for <b id="studyLengthSliderLabel">x</b> minutes.</p> 
+              <p>I will study for <b id="studyLengthSliderLabel">x</b> minutes.</p> 
               <div class="smallSliderContainer">
-                <input type="range" min="15" max="300" value="30" class="slider" id="studyLengthSlider">
+                <input type="range" min="15" max="300" value="60" class="slider" id="studyLengthSlider">
               </div>
               <script>
                 var studyLengthSlider = document.getElementById("studyLengthSlider");
                 var studyLengthSliderLabel = document.getElementById("studyLengthSliderLabel");
+                studyLengthSlider.value = studyLengthSlider.defaultValue;
                 studyLengthSliderLabel.innerHTML = studyLengthSlider.value;
-                studyLengthSlider.oninput = function() {studyLengthSliderLabel.innerHTML = this.value; };
+
+                studyLengthSlider.oninput = function() {
+                  studyLengthSliderLabel.innerHTML = this.value; 
+                  breakIntervalSlider.max = Math.min(60, Math.max(this.value, breakIntervalSlider.min));
+                  breakIntervalSlider.value = breakIntervalSlider.defaultValue;
+                  breakIntervalSliderLabel.innerHTML = breakIntervalSlider.value;
+                };
               </script>
             </div>
 
             <div id="breakIntervalInput">
-              <p>I plan to take breaks every <b id="breakIntervalSliderLabel">x</b> minutes.</p> 
+              <p>I will rest every <b id="breakIntervalSliderLabel">x</b> minutes.</p> 
               <div class="smallSliderContainer">
                 <input type="range" min="15" max="60" value="30" class="slider" id="breakIntervalSlider">
               </div>
               <script>
                 var breakIntervalSlider = document.getElementById("breakIntervalSlider");
                 var breakIntervalSliderLabel = document.getElementById("breakIntervalSliderLabel");
+                breakIntervalSlider.value = breakIntervalSlider.defaultValue
                 breakIntervalSliderLabel.innerHTML = breakIntervalSlider.value;
-                breakIntervalSlider.oninput = function() {breakIntervalSliderLabel.innerHTML = this.value; };
+                breakIntervalSlider.oninput = function() {
+                  breakIntervalSliderLabel.innerHTML = this.value; 
+                  breakIntervalSlider.defaultValue = this.value;
+                };
               </script>
             </div>
 
