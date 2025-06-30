@@ -5,6 +5,7 @@ from scripts import graph_generator
 import os
 import numpy as np
 from PIL import Image
+import random
 
 html_path = os.getcwd() + '/templates'
 
@@ -61,6 +62,13 @@ def newlog():
         logfile.write(f'[{np.datetime64("now")}] {log}\n')
 
     return 'success'
+
+@app.route('/workreminder', methods=['get'])
+def fetchworkreminder():
+    with open("static/work_reminders.txt", "w") as list_file:
+        response_list = list_file.readlines()
+        response_list = [line for line in response_list if str(line).lstrip(" #") == str(line)]
+        return random.choice(response_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

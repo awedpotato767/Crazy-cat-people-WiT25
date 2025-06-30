@@ -60,17 +60,6 @@ function updateClock() {
 
 
 
-async function submitRating() {
-  promise = axios.post(
-    "/addlog",
-    JSON.stringify("session_rating " + currentStars),
-  );
-  promise.then(async function (response) {
-    await getGraphData();
-    location.reload();
-  });
-  return false;
-}
 
 setInterval(updateClock, 100);
 
@@ -87,9 +76,6 @@ function viewButtons() {
   document.getElementById("display").style.display = "block";
 }
 
-async function getGraphData() {
-  await axios.post("/generategraphs");
-}
 
 function changeToBreakUi() {
   clearInterval(breakCountdownText)

@@ -8,9 +8,12 @@ var breakCountdown = breakInterval;
 setInterval(() => {
   breakCountdown --;
 }, 60000);
-//initialise this here to make it global.
+//declaring this here to make it global.
 var breakCountdownText;
 var breakReminderTimeout;
+var workReminderTimeout;
+//create a countdown variable for the study session
+var endReminderTimeout;
 
 
 function startStudy() {
@@ -18,10 +21,16 @@ function startStudy() {
   studyLength = document.getElementById("studyLengthSlider").value;
   breakInterval = document.getElementById("breakIntervalSlider").value;
   isBreak = false;
-  //initialise the countdown clock
+
+
+  //initialise the countdown clock for breaks
   breakCountdown = breakInterval;
   breakReminderTimeout = setTimeout(showBreakReminders, 60000*breakCountdown);
+
+  //initialise the countdown clock for stopping
+  endReminderTimeout = setTimeout(showEndReminder, 60000*studyLength);
   changeToWorkUi();
+
 }
 
 function startShortBreak(){
@@ -34,6 +43,7 @@ function startLongBreak(){
 }
 function endBreak() {
   isBreak = false;
+  clearTimeout(workReminderTimeout);
   axios.post("/addlog", JSON.stringify("break ended"));
   changeToWorkUi();
 }
@@ -41,6 +51,18 @@ function endBreak() {
 function endStudySession(){
   axios.post("/addlog", JSON.stringify("session ended"));
   changeToRatingUi();
+}
+
+async function submitRating() {
+  promise = axios.post(
+    "/addlog",
+    JSON.stringify("session_rating " + currentStars),
+  );
+  promise.then(async function (response) {
+    await axios.post("/generategraphs");
+    location.reload();
+  });
+  return false;
 }
 
 
@@ -53,16 +75,21 @@ function startBreak(minutes) {
   //set up a countdown until the next break
   breakCountdown = breakInterval;  //remind the user to get back to work after a delay
   //TODO implement showWorkReminders
-  setTimeout(showWorkReminders,60000*minutes);
+  workReminderTimeout = setTimeout(showWorkReminders,60000*minutes);
   changeToBreakUi();
 }
 
 function showWorkReminders() {
-
+  rawMessage = axios.get("/workreminder", {responsetype:'text'})
+  document.getElementById("text").innerHTML = rawMessage;//TODO implement the above url in flask
 }
 
 function  showBreakReminders() {
-  
+  if 
+}
+
+function showEndReminder(){
+
 }
 //OBSELETE
 
