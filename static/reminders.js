@@ -75,11 +75,9 @@ function startBreak(minutes) {
   //remind the user to take a break when that is due
   clearTimeout(breakReminderTimeout);
   clearInterval(reminderInterval);
-  breakReminderTimeout = setTimeout(showBreakReminders, 60000*breakCountdown);
-
-  //set up a countdown until the next break
+    //set up a countdown until the next break
   breakCountdown = breakInterval;  //remind the user to get back to work after a delay
-  //TODO implement showWorkReminders
+  breakReminderTimeout = setTimeout(showBreakReminders, 60000*breakCountdown);
   workReminderTimeout = setTimeout(showWorkReminders,60000*minutes);
   changeToBreakUi();
 }
