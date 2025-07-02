@@ -37,13 +37,12 @@ body {
     left: 400px;
     top: 500px;
     width: 700px;
-    
 }
 
 .disabled {
     opacity: 0.6;
     cursor: not-allowed;
-  }
+}
 
 .stars button {
     font: 50px Arial;
@@ -52,30 +51,32 @@ body {
     display: none;
 }
 
-#studyLength {
+#studyLengthInput {
     position: fixed;
     top: 500px;
     left: 100px;
     display: block;
 }
 
-#studyLengthSlider, #breakDistanceSlider {
+#studyLengthSlider,
+#breakIntervalSlider {
     accent-color: #ff6600;
-    width:250px
+    width: 250px;
 }
 
-#breakDistance {
+#breakIntervalInput {
     position: fixed;
     top: 500px;
     left: 700px;
     display: block;
 }
 
-#breakDistance p, #studyLength p {
+#breakIntervalInput p,
+#studyLengthInput p {
     font: 20px Arial;
 }
 
-#start {
+#startSessionButton {
     position: fixed;
     border: none;
     height: 100px;
@@ -89,7 +90,7 @@ body {
     display: block;
 }
 
-#endBreak {
+#endBreakButton {
     position: fixed;
     border: none;
     height: 100px;
@@ -103,7 +104,7 @@ body {
     display: none;
 }
 
-#stop {
+#endSessionButton {
     position: fixed;
     border: none;
     height: 100px;
@@ -138,6 +139,20 @@ body {
     width: 250px;
     top: 500px;
     left: 700px;
+    font: 36px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: none;
+}
+
+#submitRating {
+    position: fixed;
+    border: none;
+    height: 100px;
+    width: 250px;
+    top: 600px;
+    left: 400px;
     font: 36px Arial;
     color: black;
     background-color: #ffef91;
@@ -197,6 +212,6 @@ button:hover {
 }
 
 .graph {
-    width:30%;
-    float:left;
+    width: 30%;
+    float: left;
 }

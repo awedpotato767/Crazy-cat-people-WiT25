@@ -18,8 +18,10 @@ slider2.oninput = function() {
  */
 
 var thisTime;
+var currentStars = 0;
 
 function starChange(starVal) {
+  currentStars = starVal;
   for (j = 1; j < 6; j++) {
     if (j <= starVal) {
       document.getElementById("star" + j).innerHTML = "★";
@@ -29,28 +31,10 @@ function starChange(starVal) {
   }
 }
 
-function menuChange1() {
-  document.getElementById("start").style.display = "none";
-  document.getElementById("studyLength").style.display = "none";
-  document.getElementById("breakDistance").style.display = "none";
-  document.getElementById("stop").style.display = "block";
-  document.getElementById("shortBreak").style.display = "block";
-  document.getElementById("longBreak").style.display = "block";
-  document.getElementById("endBreak").style.display = "none";
 
-  thisTime = parseInt(document.getElementById("breakDistanceSlider").value);
-  document.getElementById("text").innerHTML =
-    "You should take a break in " + thisTime + " minutes :)";
-  timer = setInterval(breakTimer(), 60000);
-}
 
-function aBreak() {
-  document.getElementById("stop").style.display = "none";
-  document.getElementById("shortBreak").style.display = "none";
-  document.getElementById("longBreak").style.display = "none";
-  document.getElementById("text").innerHTML = "Touch some grass!";
-  document.getElementById("endBreak").style.display = "block";
-}
+
+
 
 function clockChange() {
   if (document.getElementById("clock").style.display == "none") {
@@ -74,28 +58,11 @@ function updateClock() {
     hours + ":" + minutes + ":" + seconds;
 }
 
-function stopChange() {
-  document.getElementById("star1").style.display = "inline-block";
-  document.getElementById("star2").style.display = "inline-block";
-  document.getElementById("star3").style.display = "inline-block";
-  document.getElementById("star4").style.display = "inline-block";
-  document.getElementById("star5").style.display = "inline-block";
-  document.getElementById("stop").style.display = "none";
-  document.getElementById("shortBreak").style.display = "none";
-  document.getElementById("longBreak").style.display = "none";
-  document.getElementById("text").innerHTML =
-    "please rate your study session :)";
 
-  clearInterval(timer);
-}
+
 
 setInterval(updateClock, 100);
 
-function breakTimer() {
-  document.getElementById("text").innerHTML =
-    "You should take a break in " + thisTimer + " minutes :)";
-  thisTime--;
-}
 
 function viewGraphs() {
   document.getElementById("graphs-container").style.display = "block";
@@ -109,18 +76,47 @@ function viewButtons() {
   document.getElementById("display").style.display = "block";
 }
 
-const graphs = Vue.createApp({
-  data() {
-    return {};
-  },
-  methods: {
-    getGraphData: function () {
-      axios.post("/generategraphs");
-    },
-  },
-  mounted() {
-    this.getGraphData();
-  },
-});
 
-graphs.mount("#graphs-container");
+function changeToBreakUi() {
+  clearInterval(breakCountdownText)
+  document.getElementById("endSessionButton").style.display = "none";
+  document.getElementById("shortBreak").style.display = "none";
+  document.getElementById("longBreak").style.display = "none";
+  document.getElementById("text").innerHTML = "Touch some grass!";
+  document.getElementById("endBreakButton").style.display = "block";
+}
+
+function changeToWorkUi() {
+  document.getElementById("startSessionButton").style.display = "none";
+  document.getElementById("studyLengthInput").style.display = "none";
+  document.getElementById("breakIntervalInput").style.display = "none";
+
+  document.getElementById("endBreakButton").style.display = "none";
+
+  document.getElementById("endSessionButton").style.display = "block";
+  document.getElementById("shortBreak").style.display = "block";
+  document.getElementById("longBreak").style.display = "block";
+    
+
+  document.getElementById("text").innerHTML =
+      "You should take a break in " + breakCountdown + " minutes :)";
+  breakCountdownText = setInterval(() => {
+    document.getElementById("text").innerHTML =
+      "You should take a break in " + breakCountdown + " minutes :)";
+  }, 60000);
+}
+function changeToRatingUi() {
+  clearInterval(breakCountdownText)
+  document.getElementById("star1").style.display = "inline-block";
+  document.getElementById("star2").style.display = "inline-block";
+  document.getElementById("star3").style.display = "inline-block";
+  document.getElementById("star4").style.display = "inline-block";
+  document.getElementById("star5").style.display = "inline-block";
+  document.getElementById("submitRating").style.display = "block";
+
+  document.getElementById("endSessionButton").style.display = "none";
+  document.getElementById("shortBreak").style.display = "none";
+  document.getElementById("longBreak").style.display = "none";
+  document.getElementById("text").innerHTML =
+    "please rate your study session :)";
+}

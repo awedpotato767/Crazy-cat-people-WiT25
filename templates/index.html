@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn out </title>
+    <title>Learn out: burnout friendly study helper.</title>
+    <link rel="icon" type="image/svg" href="{{ url_for('static', filename='logo.svg') }}"  />
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
-    <script src="https://unpkg.com/vue@3.0.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
    <div id="backBox">
         <div id="display">
-            <p id="clock"></p></p>
+            <p id="clock"></p>
             <p id="text">Are you ready to start studying?</p>
             <div class = stars>
                     <button id = star1 onclick="starChange(1)">☆</button>
@@ -21,34 +21,61 @@
                     <button id = star4 onclick="starChange(4)">☆</button>
                     <button id = star5 onclick="starChange(5)">☆</button>
                  </div>
+
         </div>
 
 <!--The text elements for the main box-->
 
         <div id="mainButtons">
-            <button id="start" onclick="menuChange1()" v-on:click="startStudy">Start</button>
-            <button id="shortBreak" onclick="aBreak()" v-on:click="startShortBreak">Take a short break</button>
-            <button id="longBreak" onclick="aBreak()" v-on:click="startLongBreak">Take a long break</button>
-            <button id="stop" onclick="stopChange()" v-on:click="endStudySession">Stop</button>
-            <button id="endBreak" onclick="menuChange1()">End break</button>
+            <button id="startSessionButton" onclick="startStudy()">Start</button>
+            <button id="shortBreak" onclick="startShortBreak()">Take a short break</button>
+            <button id="longBreak" onclick="startLongBreak()">Take a long break</button>
+            <button id="endSessionButton" onclick="endStudySession()">Stop</button>
+            <button id="endBreakButton" onclick="endBreak()">End break</button>
+            <button id="submitRating" onclick="submitRating()">Submit rating</button>
 
-            <div id="studyLength">
-                <p>Planned Study Period (minutes)</p>
-                <input type="range" min="15" max="300" id="studyLengthSlider" v-model="studyLength">
-                <label for="studyLengthSlider">{{studyLength}}</label>
+            <div id="studyLengthInput">
+              <p>I will study for <b id="studyLengthSliderLabel">x</b> minutes.</p> 
+              <div class="smallSliderContainer">
+                <input type="range" min="15" max="300" value="60" class="slider" id="studyLengthSlider">
+              </div>
+              <script>
+                var studyLengthSlider = document.getElementById("studyLengthSlider");
+                var studyLengthSliderLabel = document.getElementById("studyLengthSliderLabel");
+                studyLengthSlider.value = studyLengthSlider.defaultValue;
+                studyLengthSliderLabel.innerHTML = studyLengthSlider.value;
+
+                studyLengthSlider.oninput = function() {
+                  studyLengthSliderLabel.innerHTML = this.value; 
+                  breakIntervalSlider.max = Math.min(60, Math.max(this.value, breakIntervalSlider.min));
+                  breakIntervalSlider.value = breakIntervalSlider.defaultValue;
+                  breakIntervalSliderLabel.innerHTML = breakIntervalSlider.value;
+                };
+              </script>
             </div>
 
-            <div id="breakDistance">
-                <p>Time between breaks (minutes)</p>
-                <input type="range" min="15" max="60" id="breakDistanceSlider" v-model="breakDistance">
-                <label for="breakDistanceSlider">{{breakDistance}}</label>
+            <div id="breakIntervalInput">
+              <p>I will rest every <b id="breakIntervalSliderLabel">x</b> minutes.</p> 
+              <div class="smallSliderContainer">
+                <input type="range" min="15" max="60" value="30" class="slider" id="breakIntervalSlider">
+              </div>
+              <script>
+                var breakIntervalSlider = document.getElementById("breakIntervalSlider");
+                var breakIntervalSliderLabel = document.getElementById("breakIntervalSliderLabel");
+                breakIntervalSlider.value = breakIntervalSlider.defaultValue
+                breakIntervalSliderLabel.innerHTML = breakIntervalSlider.value;
+                breakIntervalSlider.oninput = function() {
+                  breakIntervalSliderLabel.innerHTML = this.value; 
+                  breakIntervalSlider.defaultValue = this.value;
+                };
+              </script>
             </div>
 
         </div>
 
         <div id="graphs-container">
             <button id="gotobuttons" onclick="viewButtons()">Go back</button>
-            <button id="regengraphs" v-on:click="getGraphData">Regenerate graphs</button><br>
+            <button id="regengraphs" onclick="getGraphData()">Regenerate graphs</button><br>
             <div style="display:table">
                 <img src="./static/break_count_rating.png" width="320">
                 <img src="./static/rating_time.png" width="600">

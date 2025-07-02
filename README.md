@@ -27,4 +27,6 @@ python package dependencies:
 other dependencies:
   JS-capable web browser
 
-Simply run "python web.py" and open the url the command spits out.
+Simply run "python web.py" in the installation directory.
+The program's output should contain the line "running on http://--IP ADDRESS--". Typically, this is 127.0.0.1:5000.
+Just copy/paste the address into a modern web borwser to open the program.
