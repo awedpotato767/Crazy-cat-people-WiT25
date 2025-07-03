@@ -9,33 +9,21 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-
    <div id="backBox">
         <div id="display">
-            <p id="clock"></p>
-            <p id="text">Are you ready to start studying?</p>
-            <div class = stars>
+            <p id="clock" style="font-size: max(6vw, 6vw);"></p>
+            <h1 id="text">Are you ready to start studying?</h1>
+            <div id = stars style="display: none;">
                     <button id = star1 onclick="starChange(1)">☆</button>
                     <button id = star2 onclick="starChange(2)">☆</button>
                     <button id = star3 onclick="starChange(3)">☆</button>
                     <button id = star4 onclick="starChange(4)">☆</button>
                     <button id = star5 onclick="starChange(5)">☆</button>
-                 </div>
-
+            </div>
         </div>
-
-<!--The text elements for the main box-->
-
-        <div id="mainButtons">
-            <button id="startSessionButton" onclick="startStudy()">Start</button>
-            <button id="shortBreak" onclick="startShortBreak()">Take a short break</button>
-            <button id="longBreak" onclick="startLongBreak()">Take a long break</button>
-            <button id="endSessionButton" onclick="endStudySession()">Stop</button>
-            <button id="endBreakButton" onclick="endBreak()">End break</button>
-            <button id="submitRating" onclick="submitRating()">Submit rating</button>
-
+        <div id="extraButtons">
             <div id="studyLengthInput">
-              <p>I will study for <b id="studyLengthSliderLabel">x</b> minutes.</p> 
+              <p>I will study for <b id="studyLengthSliderLabel">x</b> minutes.</p>
               <div class="smallSliderContainer">
                 <input type="range" min="15" max="300" value="60" class="slider" id="studyLengthSlider">
               </div>
@@ -46,16 +34,15 @@
                 studyLengthSliderLabel.innerHTML = studyLengthSlider.value;
 
                 studyLengthSlider.oninput = function() {
-                  studyLengthSliderLabel.innerHTML = this.value; 
+                  studyLengthSliderLabel.innerHTML = this.value;
                   breakIntervalSlider.max = Math.min(60, Math.max(this.value, breakIntervalSlider.min));
                   breakIntervalSlider.value = breakIntervalSlider.defaultValue;
                   breakIntervalSliderLabel.innerHTML = breakIntervalSlider.value;
                 };
               </script>
             </div>
-
             <div id="breakIntervalInput">
-              <p>I will rest every <b id="breakIntervalSliderLabel">x</b> minutes.</p> 
+              <p>I will rest every <b id="breakIntervalSliderLabel">x</b> minutes.</p>
               <div class="smallSliderContainer">
                 <input type="range" min="15" max="60" value="30" class="slider" id="breakIntervalSlider">
               </div>
@@ -65,16 +52,23 @@
                 breakIntervalSlider.value = breakIntervalSlider.defaultValue
                 breakIntervalSliderLabel.innerHTML = breakIntervalSlider.value;
                 breakIntervalSlider.oninput = function() {
-                  breakIntervalSliderLabel.innerHTML = this.value; 
+                  breakIntervalSliderLabel.innerHTML = this.value;
                   breakIntervalSlider.defaultValue = this.value;
                 };
               </script>
             </div>
 
-        </div>
 
-        <div id="graphs-container">
-            <button id="gotobuttons" onclick="viewButtons()">Go back</button>
+            <button id="shortBreak" onclick="startShortBreak()" style="display: none;">Take a short break</button>
+            <button id="longBreak" onclick="startLongBreak()" style="display: none;">Take a long break</button>
+        </div>
+        <div id="mainButtons">
+            <button id="startSessionButton" onclick="startStudy()">Start</button>
+            <button id="endSessionButton" onclick="endStudySession()" style="display: none;">Stop</button>
+            <button id="submitRating" onclick="submitRating()" style="display: none;">Submit rating</button>
+            <button id="endBreakButton" onclick="endBreak()" style="display: none;">End break</button>
+        </div>
+        <div id="graphs-container" style="display: none;">
             <button id="regengraphs" onclick="getGraphData()">Regenerate graphs</button><br>
             <div style="display:table">
                 <img src="./static/break_count_rating.png" width="320">
@@ -82,14 +76,11 @@
                 <img src="./static/time_time.png" width="520">
             </div>
         </div>
-
-        <div class="sideButtons">
-            <button id="b5" onclick="viewGraphs()">Data</button>
-            <button id="b6" onclick="clockChange()">Hide/show<br>clock</button>
-        </div>
-
     </div>
-        <!--The button elements for the main box-->
+    <div id="sideButtonContainer">
+        <button id="displayAnalyticsButton" onclick="toggleGraphs()">Study data</button>
+        <button id="toggleClockButton" onclick="clockChange()">Toggle clock</button>
+    </div>
 
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

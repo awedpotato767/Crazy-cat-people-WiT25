@@ -31,11 +31,6 @@ function starChange(starVal) {
   }
 }
 
-
-
-
-
-
 function clockChange() {
   if (document.getElementById("clock").style.display == "none") {
     document.getElementById("clock").style.display = "block";
@@ -58,27 +53,31 @@ function updateClock() {
     hours + ":" + minutes + ":" + seconds;
 }
 
-
-
-
 setInterval(updateClock, 100);
 
-
-function viewGraphs() {
+function toggleGraphs() {
+  if (document.getElementById("graphs-container").style.display == "block") {
+    hideGraphs();
+  } else {
+    showGraphs();
+  }
+}
+function showGraphs() {
   document.getElementById("graphs-container").style.display = "block";
   document.getElementById("mainButtons").style.display = "none";
+  document.getElementById("extraButtons").style.display = "none";
   document.getElementById("display").style.display = "none";
 }
 
-function viewButtons() {
+function hideGraphs() {
   document.getElementById("graphs-container").style.display = "none";
   document.getElementById("mainButtons").style.display = "block";
+  document.getElementById("extraButtons").style.display = "block";
   document.getElementById("display").style.display = "block";
 }
 
-
 function changeToBreakUi() {
-  clearInterval(breakCountdownText)
+  clearInterval(breakCountdownText);
   document.getElementById("endSessionButton").style.display = "none";
   document.getElementById("shortBreak").style.display = "none";
   document.getElementById("longBreak").style.display = "none";
@@ -96,22 +95,17 @@ function changeToWorkUi() {
   document.getElementById("endSessionButton").style.display = "block";
   document.getElementById("shortBreak").style.display = "block";
   document.getElementById("longBreak").style.display = "block";
-    
 
   document.getElementById("text").innerHTML =
-      "You should take a break in " + breakCountdown + " minutes :)";
+    "You should take a break in " + breakCountdown + " minutes :)";
   breakCountdownText = setInterval(() => {
     document.getElementById("text").innerHTML =
       "You should take a break in " + breakCountdown + " minutes :)";
   }, 60000);
 }
 function changeToRatingUi() {
-  clearInterval(breakCountdownText)
-  document.getElementById("star1").style.display = "inline-block";
-  document.getElementById("star2").style.display = "inline-block";
-  document.getElementById("star3").style.display = "inline-block";
-  document.getElementById("star4").style.display = "inline-block";
-  document.getElementById("star5").style.display = "inline-block";
+  clearInterval(breakCountdownText);
+  document.getElementById("stars").style.display = "flex";
   document.getElementById("submitRating").style.display = "block";
 
   document.getElementById("endSessionButton").style.display = "none";

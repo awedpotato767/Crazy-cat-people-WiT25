@@ -10,240 +10,121 @@
 }
 
 */
-
-#backBox {
-    position: fixed;
-    padding: 0;
-    background-color: #ffb240;
-
-    width: 70vw;     
-    height: 90vh;    
-    left: 5vw;       
-    top: 5vh;
-    
-    max-width: 100%; 
-    max-height: 100%;
-    box-sizing: border-box; 
+button {
+    border: none;
+    font-size: max(3vh, 3vw);
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: block;
+    padding: 2%;
+    margin: auto;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-    display: flex;
-    justify-content: center; 
-    align-items: center;
+    width: 100%;
 }
-
-body {
-    background-color: #ffef91;
-}
-
-#clock {
-    font: 150px Arial;
-    color: black;
-    display: block;
-    margin-top: -20vh; 
-}
-
-#text {
-    font: 50px Arial;
-    color: black;
-    display: block;
-}
-
-.stars {
-    position: fixed;
-    color: black;
-    left: 400px;
-    top: 500px;
-    width: 700px;
-}
-
-.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.stars button {
-    font: 50px Arial;
-    background-color: #ffb240;
-    border: none;
-    display: none;
-}
-
-#studyLengthInput {
-    position: fixed;
-    background-color: #ffef91;
-    padding: 10px 25px;
-    top: 65vh;
-    left: 10vw;
-    display: block;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-#studyLengthSlider,
-#breakIntervalSlider {
-    accent-color: #ff6600;
-    width: 250px;
-}
-
-#breakIntervalInput {
-    position: fixed;
-    background-color: #ffef91;
-    padding: 10px 25px;
-    top: 65vh;
-    left: 48vw;
-    display: block;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-#breakIntervalInput p,
-#studyLengthInput p {
-    font: 20px Arial;
-}
-
- /* #startSessionButton {
-    position: fixed;
-    border: none;
-    height: 100px;
-    width: 250px;
-    top: 500px;
-    left: 400px;
-    font: 36px Arial;
-    color: black;
-    background-color: #ffef91;
-    transition-duration: 0.1s;
-    display: block;
-} */
-
-#startSessionButton {
-    position: fixed;
-    border: none;
-    font: 50px Arial;
-    color: black;
-    background-color: #ffef91;
-    transition-duration: 0.1s;
-    display: block;
-    padding: 20px 50px;
-    top: 65vh;
-    left: 32vw;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-} 
-
-#endBreakButton {
-    position: fixed;
-    border: none;
-    height: 100px;
-    width: 250px;
-    top: 500px;
-    left: 400px;
-    font: 36px Arial;
-    color: black;
-    background-color: #ffef91;
-    transition-duration: 0.1s;
-    display: none;
-}
-
-#endSessionButton {
-    position: fixed;
-    border: none;
-    height: 100px;
-    width: 250px;
-    top: 500px;
-    left: 400px;
-    font: 36px Arial;
-    color: black;
-    background-color: #ffef91;
-    transition-duration: 0.1s;
-    display: none;
-}
-
-#shortBreak {
-    position: fixed;
-    border: none;
-    height: 100px;
-    width: 250px;
-    top: 500px;
-    left: 100px;
-    font: 36px Arial;
-    color: black;
-    background-color: #ffef91;
-    transition-duration: 0.1s;
-    display: none;
-}
-
-#longBreak {
-    position: fixed;
-    border: none;
-    height: 100px;
-    width: 250px;
-    top: 500px;
-    left: 700px;
-    font: 36px Arial;
-    color: black;
-    background-color: #ffef91;
-    transition-duration: 0.1s;
-    display: none;
-}
-
-#submitRating {
-    position: fixed;
-    border: none;
-    height: 100px;
-    width: 250px;
-    top: 600px;
-    left: 400px;
-    font: 36px Arial;
-    color: black;
-    background-color: #ffef91;
-    transition-duration: 0.1s;
-    display: none;
-}
-
 button:hover {
     cursor: pointer;
     text-decoration-line: underline;
 }
 
- /*#b4 {
-    position: fixed;
-    border: none;
-    font: 36px Arial;
+p {
+    font-size: max(2vh, 2vw);
+    text-align: center;
+    margin: auto;
+    margin-top: 0;
     color: black;
-    transition-duration: 0.1s;
-    background-color: #ffb240;
-    position: fixed;
-    padding: 10px 25px;
-    top: 40;
-    left: 85vw;
     display: block;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-} */
-
-#b5 {
-    position: fixed;
-    padding: 20px 50px;
-    top: 30vh;
-    left: 80vw;
-    display: block;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border: none;
-    font: 50px Arial;
+}
+h1 {
+    font-size: max(4vh, 4vw);
+    margin: auto;
     color: black;
-    transition-duration: 0.1s;
-    background-color: #ffb240;
-
+    display: block;
+}
+input {
+    accent-color: #ff6600;
+    width: 100%;
 }
 
-#b6 {
-     position: fixed;
-    padding: 20px 20px;
-    top: 60vh;
-    left: 80vw;
+body {
+    background-color: #ffef91;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 2vh;
+    height: 100vh;
+}
+#backBox {
+    padding: 5%;
+    background-color: #ffb240;
+    flex: 1;
+    height: 96vh;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+#sideButtonContainer {
+    display: flex;
+    flex: 0.2;
+    flex-direction: column;
+    flex-wrap: wrap;
+    button {
+        background-color: #ffb240;
+        flex: 0.33;
+    }
+}
+#display {
+    margin: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#extraButtons {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1em;
+    button {
+        flex: 1;
+    }
+}
+.mainButton {
+}
+/*will be a flex box*/
+#stars {
+    flex-direction: row;
+    justify-content: space-evenly;
+    button {
+        font-size: max(8vh, 8vw);
+        background-color: #ffb240;
+        display: inline-block;
+        width: unset;
+        box-shadow: unset;
+        padding: unset;
+    }
+}
+
+#studyLengthSlider,
+#breakIntervalSlider {
+}
+#studyLengthInput,
+#breakIntervalInput {
+    background-color: #ffef91;
+    padding: 1%;
+    margin: 2%;
+    flex: 1;
     display: block;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border: none;
-    font: 36px Arial;
-    color: black;
-    transition-duration: 0.1s;
-    background-color: #ffb240;
+    p {
+        text-wrap-mode: nowrap;
+    }
 }
 
 #graphs-container {
@@ -256,4 +137,9 @@ button:hover {
 .graph {
     width: 30%;
     float: left;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
