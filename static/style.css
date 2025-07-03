@@ -1,3 +1,4 @@
+/*
 #backBox {
     position: fixed;
     padding: 0px;
@@ -8,26 +9,42 @@
     top: 30px;
 }
 
+*/
+
+#backBox {
+    position: fixed;
+    padding: 0;
+    background-color: #ffb240;
+
+    width: 70vw;     
+    height: 90vh;    
+    left: 5vw;       
+    top: 5vh;
+    
+    max-width: 100%; 
+    max-height: 100%;
+    box-sizing: border-box; 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
 body {
     background-color: #ffef91;
 }
 
 #clock {
     font: 150px Arial;
-    position: fixed;
     color: black;
-    left: 200px;
-    top: 0px;
     display: block;
+    margin-top: -20vh; 
 }
 
 #text {
     font: 50px Arial;
-    position: fixed;
     color: black;
-    left: 200px;
-    top: 300px;
-    width: 600px;
     display: block;
 }
 
@@ -53,9 +70,12 @@ body {
 
 #studyLengthInput {
     position: fixed;
-    top: 500px;
-    left: 100px;
+    background-color: #ffef91;
+    padding: 10px 25px;
+    top: 65vh;
+    left: 10vw;
     display: block;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #studyLengthSlider,
@@ -66,9 +86,12 @@ body {
 
 #breakIntervalInput {
     position: fixed;
-    top: 500px;
-    left: 700px;
+    background-color: #ffef91;
+    padding: 10px 25px;
+    top: 65vh;
+    left: 48vw;
     display: block;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #breakIntervalInput p,
@@ -76,7 +99,7 @@ body {
     font: 20px Arial;
 }
 
-#startSessionButton {
+ /* #startSessionButton {
     position: fixed;
     border: none;
     height: 100px;
@@ -88,7 +111,21 @@ body {
     background-color: #ffef91;
     transition-duration: 0.1s;
     display: block;
-}
+} */
+
+#startSessionButton {
+    position: fixed;
+    border: none;
+    font: 50px Arial;
+    color: black;
+    background-color: #ffef91;
+    transition-duration: 0.1s;
+    display: block;
+    padding: 20px 50px;
+    top: 65vh;
+    left: 32vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} 
 
 #endBreakButton {
     position: fixed;
@@ -165,43 +202,48 @@ button:hover {
     text-decoration-line: underline;
 }
 
-#b4 {
+ /*#b4 {
     position: fixed;
     border: none;
-    height: 100px;
-    width: 250px;
     font: 36px Arial;
     color: black;
     transition-duration: 0.1s;
     background-color: #ffb240;
-    top: 100px;
-    left: 1100px;
-}
+    position: fixed;
+    padding: 10px 25px;
+    top: 40;
+    left: 85vw;
+    display: block;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} */
 
 #b5 {
     position: fixed;
+    padding: 20px 50px;
+    top: 30vh;
+    left: 80vw;
+    display: block;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border: none;
-    height: 100px;
-    width: 250px;
-    font: 36px Arial;
+    font: 50px Arial;
     color: black;
     transition-duration: 0.1s;
     background-color: #ffb240;
-    top: 300px;
-    left: 1100px;
+
 }
 
 #b6 {
-    position: fixed;
+     position: fixed;
+    padding: 20px 20px;
+    top: 60vh;
+    left: 80vw;
+    display: block;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border: none;
-    height: 100px;
-    width: 250px;
     font: 36px Arial;
     color: black;
     transition-duration: 0.1s;
     background-color: #ffb240;
-    top: 500px;
-    left: 1100px;
 }
 
 #graphs-container {
